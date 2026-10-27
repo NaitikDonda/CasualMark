@@ -47,8 +47,6 @@ export function UploadDatasetModal({ isOpen, onClose, onSuccess }: UploadModalPr
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  if (!isOpen) return null;
-
   const handleFileDrop = (e: React.DragEvent) => {
     e.preventDefault();
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
@@ -139,6 +137,8 @@ export function UploadDatasetModal({ isOpen, onClose, onSuccess }: UploadModalPr
       }
     }
   }, [treatmentCol, uploadResult]);
+
+  if (!isOpen) return null;
 
   const handleRunAnalysis = async () => {
     if (!uploadResult || !treatmentCol || !outcomeCol) return;
