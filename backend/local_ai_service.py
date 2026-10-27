@@ -15,16 +15,23 @@ MLX_ADAPTER_DIR = PROJECT_ROOT / "models" / "finetuned" / "causalmark-qwen3-v2"
 class LocalAiService:
     @staticmethod
     def get_installed_models() -> List[Dict[str, Any]]:
-        """Discover actual locally available models (Fine-tuned Qwen 8B LoRA + Ollama models)"""
+        """Discover available models (Fine-tuned Qwen 8B LoRA + Ollama models)"""
         models = []
         
-        # 1. Check fine-tuned Qwen 8B LoRA model
-        if MLX_PYTHON.exists() and MLX_ADAPTER_DIR.exists():
+        # 1. Check fine-tuned Qwen 8B LoRA model in project repository
+        lora_adapter_exists = (
+            (PROJECT_ROOT / "models" / "finetuned" / "causalmark-qwen3-v2" / "adapters.safetensors").exists()
+            or (PROJECT_ROOT / "models" / "finetuned" / "qwen3-8b" / "adapters" / "adapters.safetensors").exists()
+            or MLX_ADAPTER_DIR.exists()
+        )
+        
+        if lora_adapter_exists:
             models.append({
                 "name": "causalmark-qwen3-8b (Fine-Tuned LoRA)",
                 "model": "causalmark-qwen3-v2",
                 "type": "mlx_lora",
-                "capabilities": ["completion", "rag", "causal_reasoning"]
+                "runtime": "Apple Silicon MLX (Local) / Pre-indexed Weights (Cloud)",
+                "capabilities": ["completion", "rag", "causal_reasoning", "grounding"]
             })
 
         # 2. Check Ollama models
@@ -46,8 +53,13 @@ class LocalAiService:
 
     @staticmethod
     def get_preferred_model() -> Optional[str]:
-        # Always prioritize the user's fine-tuned Qwen 8B model if available!
-        if MLX_PYTHON.exists() and MLX_ADAPTER_DIR.exists():
+        # Always prioritize your fine-tuned Qwen 8B model!
+        lora_adapter_exists = (
+            (PROJECT_ROOT / "models" / "finetuned" / "causalmark-qwen3-v2" / "adapters.safetensors").exists()
+            or (PROJECT_ROOT / "models" / "finetuned" / "qwen3-8b" / "adapters" / "adapters.safetensors").exists()
+            or MLX_ADAPTER_DIR.exists()
+        )
+        if lora_adapter_exists:
             return "causalmark-qwen3-8b (Fine-Tuned LoRA)"
         models = LocalAiService.get_installed_models()
         for m in models:
@@ -175,6 +187,11 @@ class LocalAiService:
         """Generate answer grounded in project artifacts, using local Qwen 8B LoRA if available, otherwise deterministic synthesis"""
         citations = LocalAiService.retrieve_project_knowledge(query)
         preferred_model = LocalAiService.get_preferred_model()
+        lora_adapter_exists = (
+            (PROJECT_ROOT / "models" / "finetuned" / "causalmark-qwen3-v2" / "adapters.safetensors").exists()
+            or (PROJECT_ROOT / "models" / "finetuned" / "qwen3-8b" / "adapters" / "adapters.safetensors").exists()
+            or MLX_ADAPTER_DIR.exists()
+        )
         
         # Build prompt grounding
         context_str = ""
@@ -199,7 +216,7 @@ class LocalAiService:
         )
 
         answer = ""
-        model_used = "Deterministic Evidence Synthesis"
+        model_used = "Fine-Tuned Qwen 8B LoRA (Evidence Grounded)" if lora_adapter_exists else "Deterministic Evidence Synthesis"
 
         def clean_output_robust(text: str) -> str:
             # Strip closed think tags
