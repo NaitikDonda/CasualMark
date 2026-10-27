@@ -1,11 +1,12 @@
 services:
   # -------------------------------------------------------------
-  # 1. FastAPI Backend Web Service
+  # 1. FastAPI Backend Web Service (Free Tier)
   # -------------------------------------------------------------
   - type: web
     name: causalmark-backend
+    plan: free
     runtime: python
-    buildCommand: "pip install --upgrade pip && pip install -r requirements.txt && pip install uvicorn fastapi"
+    buildCommand: "pip install --upgrade pip && pip install -r requirements.txt"
     startCommand: "PYTHONPATH=.:src uvicorn backend.main:app --host 0.0.0.0 --port $PORT"
     envVars:
       - key: PYTHON_VERSION
@@ -14,10 +15,11 @@ services:
         value: 10000
 
   # -------------------------------------------------------------
-  # 2. Next.js Frontend Web Service
+  # 2. Next.js Frontend Web Service (Free Tier)
   # -------------------------------------------------------------
   - type: web
     name: causalmark-frontend
+    plan: free
     runtime: node
     rootDir: web-app
     buildCommand: "npm install && npm run build"
