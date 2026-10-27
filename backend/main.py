@@ -44,6 +44,17 @@ class ReportGenerateInput(BaseModel):
     report_type: str = Field(..., description="e.g. executive, uplift, model, project_readiness")
     title: str = "CausalMark Analytics Report"
 
+@app.get("/")
+def root():
+    return {
+        "service": "CausalMark Intelligence API",
+        "status": "online",
+        "version": "2.0.0",
+        "docs_url": "/docs",
+        "health_check": "/api/health",
+        "overview": "/api/project/overview"
+    }
+
 @app.get("/api/health")
 def health():
     return {
