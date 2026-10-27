@@ -1,0 +1,7 @@
+feature,segment,p_value,adjusted_p_value,significant
+recency,Low,1.1410923782694345e-06,,False
+recency,High,2.1343097143638955e-09,,False
+history,Low,7.315122124658746e-05,,False
+history,High,4.0536131458712794e-10,,False
+visit,Low,,,False
+visit,High,0.01912203060956945,,False

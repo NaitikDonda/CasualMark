@@ -1,0 +1,13 @@
+{
+  "notebook": "02_Uplift_Statistical_and_Criteo.ipynb",
+  "completed_sections": [
+    "Criteo data preparation",
+    "T-Learner uplift modeling",
+    "Test-set predictions",
+    "Uplift ranking and policy summaries",
+    "Feature importance",
+    "Cross-validation",
+    "Metrics and artifact exports"
+  ],
+  "report_path": "artifacts/reports/criteo_final_summary.json"
+}

@@ -1,0 +1,21 @@
+{
+  "dataset": "Criteo Uplift Modeling Benchmark",
+  "sample_rows": 140000,
+  "feature_count": 12,
+  "train_rows": 105000,
+  "test_rows": 35000,
+  "treatment_counts": {
+    "1": 119096,
+    "0": 20904
+  },
+  "conversion_rates": {
+    "0": 0.0025832376578645237,
+    "1": 0.0030311681332706388
+  },
+  "model_metrics": {
+    "MAE": 0.005392918747916251,
+    "RMSE": 0.05137833957816559,
+    "Mean Predicted Uplift": 0.00039432574952243815,
+    "Median Predicted Uplift": 0.0
+  }
+}

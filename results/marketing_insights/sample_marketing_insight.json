@@ -1,0 +1,8 @@
+{
+    "summary": "Summary of the experiment",
+    "business_impact": "Description of the business impact",
+    "risks": [
+        "List of risks"
+    ],
+    "recommendation": "Recommendation for next action"
+}

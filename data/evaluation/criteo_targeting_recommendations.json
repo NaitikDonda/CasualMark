@@ -1,0 +1,64 @@
+{
+  "project": "CausalMark",
+  "analysis": "Criteo uplift targeting",
+  "ranking_metric": "mean_predicted_uplift",
+  "strategies_evaluated": 6,
+  "strategies": [
+    {
+      "strategy": "Top 5%",
+      "target_fraction": 0.05,
+      "customers_targeted": 1750,
+      "mean_predicted_uplift": 0.020981864570124742,
+      "sum_predicted_uplift": 36.7182629977183,
+      "median_predicted_uplift": 0.011415347730527735
+    },
+    {
+      "strategy": "Top 10%",
+      "target_fraction": 0.1,
+      "customers_targeted": 3500,
+      "mean_predicted_uplift": 0.012172278126939972,
+      "sum_predicted_uplift": 42.6029734442899,
+      "median_predicted_uplift": 0.00568332498804415
+    },
+    {
+      "strategy": "Top 20%",
+      "target_fraction": 0.2,
+      "customers_targeted": 7000,
+      "mean_predicted_uplift": 0.00630218156300646,
+      "sum_predicted_uplift": 44.11527094104522,
+      "median_predicted_uplift": 0.0016741832565894104
+    },
+    {
+      "strategy": "Top 30%",
+      "target_fraction": 0.3,
+      "customers_targeted": 10500,
+      "mean_predicted_uplift": 0.004201454375337641,
+      "sum_predicted_uplift": 44.115270941045225,
+      "median_predicted_uplift": 0.0002503890445066916
+    },
+    {
+      "strategy": "Top 50%",
+      "target_fraction": 0.5,
+      "customers_targeted": 17500,
+      "mean_predicted_uplift": 0.002520872625202584,
+      "sum_predicted_uplift": 44.115270941045225,
+      "median_predicted_uplift": 0.0
+    },
+    {
+      "strategy": "Top 100%",
+      "target_fraction": 1.0,
+      "customers_targeted": 35000,
+      "mean_predicted_uplift": 0.0003648971994799864,
+      "sum_predicted_uplift": 12.771401981799524,
+      "median_predicted_uplift": 0.0
+    }
+  ],
+  "highest_mean_predicted_uplift_strategy": {
+    "strategy": "Top 5%",
+    "target_fraction": 0.05,
+    "customers_targeted": 1750,
+    "mean_predicted_uplift": 0.020981864570124742
+  },
+  "recommendation": "Use the uplift ranking to define a candidate targeting group, then validate incremental outcomes with a randomized experiment before deploying a campaign.",
+  "causal_effect_verified": false
+}

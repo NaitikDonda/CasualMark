@@ -1,0 +1,10 @@
+category,metric,value
+Dataset,Rows evaluated,50000
+Model,Factual MAE,0.005406771777246411
+Model,Factual RMSE,0.05141600921850798
+Model,Mean Predicted Uplift,0.0003648971994799864
+Model,Median Predicted Uplift,0.0
+Cross-validation,Mean factual RMSE,0.051543009558395914
+Cross-validation,Number of folds,5
+Validation,All expected artifacts exist,True
+Validation,Causal effect verified,False

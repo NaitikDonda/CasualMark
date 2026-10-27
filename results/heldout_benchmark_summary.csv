@@ -1,0 +1,11 @@
+question,answer_length,returncode
+"Treatment had 450 conversions from 5000 users, while control had 350 from 5000. Calculate both conversion rates, absolute lift in percentage points, and relative lift.",162,0
+Treatment converted 120 of 2000 users and control converted 100 of 2000. Calculate the conversion rates and absolute lift.,161,0
+A campaign generated 240 incremental purchases and cost $3600. Calculate cost per incremental purchase.,183,0
+A treatment group has 800 conversions among 10000 users and control has 700 among 10000. Calculate absolute lift and relative lift.,54,0
+"An experiment shows treatment conversion of 5.2% and control conversion of 5.0%, but the p-value is 0.18. Should the campaign be declared statistically significant at alpha 0.05?",138,0
+A campaign has a 3 percentage-point conversion lift. Explain why this alone does not prove the campaign is profitable.,356,0
+Why can comparing people who received an advertisement with people who did not receive it produce a biased estimate of causal impact?,298,0
+A campaign has positive observed lift but its 95% confidence interval includes zero. What should the analyst conclude?,325,0
+A company can spend $10000 on a campaign. What information is needed to allocate the budget using incremental profit rather than conversion rate alone?,160,0
+An experiment has treatment conversion of 8% and control conversion of 6%. Calculate relative lift and explain the difference between relative lift and percentage-point lift.,350,0

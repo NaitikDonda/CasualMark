@@ -1,0 +1,13 @@
+{
+  "question": "Which marketing segment had the highest observed conversion rate?",
+  "retrieval_method": "TF-IDF",
+  "evidence_count": 3,
+  "answer_generated": true,
+  "citations_found": 1,
+  "resolved_sources": 1,
+  "citation_validation_passed": true,
+  "semantic_grounding_verified": false,
+  "causal_effects_verified": false,
+  "source_consistency_passed": true,
+  "evidence_consistency_verified": true
+}

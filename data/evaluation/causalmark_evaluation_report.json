@@ -1,0 +1,29 @@
+{
+  "project": "CausalMark",
+  "evaluation_notebook": "05_CausalMark_Evaluation.ipynb",
+  "dataset": "Criteo uplift sample",
+  "rows_evaluated": 50000,
+  "treatment_column": "treatment",
+  "outcome_column": "conversion",
+  "treatment_groups": [
+    0,
+    1
+  ],
+  "descriptive_results_saved": true,
+  "confidence_intervals_saved": true,
+  "observed_difference_saved": true,
+  "uplift_ranking_saved": true,
+  "uplift_segments_saved": true,
+  "targeting_summary_saved": true,
+  "causal_effect_verified": false,
+  "model_evaluation": {
+    "metrics_file": "/Users/naitikdonda/Desktop/CasualMark v3/data/evaluation/criteo_model_evaluation.json",
+    "factual_mae": 0.005406771777246411,
+    "factual_rmse": 0.05141600921850798,
+    "mean_predicted_uplift": 0.0003648971994799864,
+    "median_predicted_uplift": 0.0,
+    "cross_validation_folds": 5,
+    "mean_cross_validation_rmse": 0.051543009558395914,
+    "causal_effect_verified": false
+  }
+}

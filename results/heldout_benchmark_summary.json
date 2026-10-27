@@ -1,0 +1,60 @@
+{
+  "project": "CausalMark",
+  "benchmark": "Held-out Marketing Questions",
+  "generated_at": "2026-10-27T14:36:08",
+  "total_questions": 10,
+  "successful_generations": 10,
+  "failed_generations": 0,
+  "questions": [
+    {
+      "question": "Treatment had 450 conversions from 5000 users, while control had 350 from 5000. Calculate both conversion rates, absolute lift in percentage points, and relative lift.",
+      "answer_length": 162,
+      "returncode": 0
+    },
+    {
+      "question": "Treatment converted 120 of 2000 users and control converted 100 of 2000. Calculate the conversion rates and absolute lift.",
+      "answer_length": 161,
+      "returncode": 0
+    },
+    {
+      "question": "A campaign generated 240 incremental purchases and cost $3600. Calculate cost per incremental purchase.",
+      "answer_length": 183,
+      "returncode": 0
+    },
+    {
+      "question": "A treatment group has 800 conversions among 10000 users and control has 700 among 10000. Calculate absolute lift and relative lift.",
+      "answer_length": 54,
+      "returncode": 0
+    },
+    {
+      "question": "An experiment shows treatment conversion of 5.2% and control conversion of 5.0%, but the p-value is 0.18. Should the campaign be declared statistically significant at alpha 0.05?",
+      "answer_length": 138,
+      "returncode": 0
+    },
+    {
+      "question": "A campaign has a 3 percentage-point conversion lift. Explain why this alone does not prove the campaign is profitable.",
+      "answer_length": 356,
+      "returncode": 0
+    },
+    {
+      "question": "Why can comparing people who received an advertisement with people who did not receive it produce a biased estimate of causal impact?",
+      "answer_length": 298,
+      "returncode": 0
+    },
+    {
+      "question": "A campaign has positive observed lift but its 95% confidence interval includes zero. What should the analyst conclude?",
+      "answer_length": 325,
+      "returncode": 0
+    },
+    {
+      "question": "A company can spend $10000 on a campaign. What information is needed to allocate the budget using incremental profit rather than conversion rate alone?",
+      "answer_length": 160,
+      "returncode": 0
+    },
+    {
+      "question": "An experiment has treatment conversion of 8% and control conversion of 6%. Calculate relative lift and explain the difference between relative lift and percentage-point lift.",
+      "answer_length": 350,
+      "returncode": 0
+    }
+  ]
+}

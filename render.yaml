@@ -1,0 +1,32 @@
+services:
+  # -------------------------------------------------------------
+  # 1. FastAPI Backend Web Service
+  # -------------------------------------------------------------
+  - type: web
+    name: causalmark-backend
+    runtime: python
+    buildCommand: "pip install --upgrade pip && pip install -r requirements.txt && pip install uvicorn fastapi"
+    startCommand: "PYTHONPATH=.:src uvicorn backend.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: PORT
+        value: 10000
+
+  # -------------------------------------------------------------
+  # 2. Next.js Frontend Web Service
+  # -------------------------------------------------------------
+  - type: web
+    name: causalmark-frontend
+    runtime: node
+    rootDir: web-app
+    buildCommand: "npm install && npm run build"
+    startCommand: "npm run start -- -p $PORT"
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.0
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: causalmark-backend
+          property: host

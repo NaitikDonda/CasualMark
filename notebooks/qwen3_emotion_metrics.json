@@ -1,0 +1,8 @@
+{
+    "model": "Qwen3-8B-4bit-LoRA",
+    "evaluated_samples": 100,
+    "valid_predictions": 100,
+    "unknown_predictions": 0,
+    "accuracy_all_samples": 0.52,
+    "macro_f1": 0.4086184046935379
+}

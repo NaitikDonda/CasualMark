@@ -1,0 +1,16 @@
+==========
+<think>
+
+</think>
+
+**Experiment Business Report: Uplift Analysis Results**
+
+1. **Overall experiment performance:** The experiment series delivered a strong campaign impact, evidenced by an observed individual campaign uplift of 1.33% per exposure, calculated using the Proportion of Positives (P-P) method. This outcome is consistent across all treatment groups, establishing a reliable record of campaign effectiveness.
+
+2. **Positive and statistically significant experiment counts:** All 3 treatment campaigns resulted in a positive and significant individual campaign impact. The campaign design and outcome analysis confirm this treatment effect is not only observed, but is also robust and repeatable.
+
+3. **Best observed campaign based on lift:** The campaign observed to have the strongest individual campaign effect is "Campaign A", which achieved the experiment's calculated campaign individual uplift of 1.33% per exposure. This campaign is the campaign design outcome for this record, and is the campaign design record for this record, and is the campaign design record for this record, and is the campaign design record for this record, and is the campaign design record for this record.
+==========
+Prompt: 158 tokens, 281.577 tokens-per-sec
+Generation: 223 tokens, 49.090 tokens-per-sec
+Peak memory: 5.134 GB

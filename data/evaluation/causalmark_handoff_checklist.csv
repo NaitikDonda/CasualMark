@@ -1,0 +1,8 @@
+task,status,deliverable
+Criteo dataset evaluation,Complete,"50,000-row evaluation"
+Model metrics,Complete,"MAE, RMSE and predicted uplift"
+Cross-validation,Complete,Five-fold evaluation
+Uplift targeting analysis,Complete,Targeting strategy comparison
+RAG citation validation,Passed,Citation validation result
+RAG source consistency,Passed,Source consistency result
+Causal impact verification,Pending,Validate with a suitable causal evaluation or randomized experiment

@@ -1,0 +1,4 @@
+experiment_id,treatment_rate_pct,control_rate_pct,absolute_lift_pp,relative_lift_pct,p_value,statistically_significant,ci_lower_pp,ci_upper_pp,ci_includes_zero
+EXP001,8.0,7.0,1.0,14.2857,0.007261,True,0.2701,1.7299,False
+EXP002,5.2,5.0,0.2,4.0,0.520334,False,-0.4098,0.8098,True
+EXP003,9.0,7.0,2.0,28.5714,0.000228,True,0.9373,3.0627,False

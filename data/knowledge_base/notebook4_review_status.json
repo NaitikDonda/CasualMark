@@ -1,0 +1,9 @@
+{
+  "notebook": "04_RAG_Decision_Engine.ipynb",
+  "review_artifacts_exist": true,
+  "review_complete": false,
+  "manual_precision_available": false,
+  "semantic_grounding_verified": false,
+  "causal_effects_verified": false,
+  "next_action": "Complete manual evidence relevance review before interpreting precision"
+}

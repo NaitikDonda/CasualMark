@@ -1,0 +1,9 @@
+artifact,exists,size_kb
+criteo_treatment_group_summary.csv,True,0.33
+criteo_conversion_confidence_intervals.csv,True,0.28
+criteo_uplift_strategy_comparison.csv,True,0.53
+causalmark_notebook5_final_report.json,True,2.32
+causalmark_notebook5_validation.csv,False,
+causalmark_notebook5_summary.csv,True,0.38
+causalmark_prediction_errors.png,True,19.6
+causalmark_predicted_uplift.png,True,26.79

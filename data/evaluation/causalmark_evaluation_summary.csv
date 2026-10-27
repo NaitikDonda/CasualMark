@@ -1,0 +1,11 @@
+metric,value
+Evidence documents,3
+Indexed documents,3
+Test questions,4
+Answer generated,True
+Citations found,1
+Resolved sources,1
+Citation validation,True
+Source consistency,True
+Semantic grounding verified,False
+Causal effects verified,False

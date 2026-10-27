@@ -1,0 +1,9 @@
+{
+  "project": "CausalMark",
+  "artifacts": {
+    "experiment_history": "/Users/naitikdonda/Desktop/CasualMark v3/results/experiment_history.jsonl",
+    "campaign_summary": "/Users/naitikdonda/Desktop/CasualMark v3/results/campaign_summary.json",
+    "ai_report": "/Users/naitikdonda/Desktop/CasualMark v3/results/ai_campaign_report.txt",
+    "fine_tuned_model": "/Users/naitikdonda/Desktop/CasualMark v3/models/finetuned/causalmark-qwen3-v2"
+  }
+}

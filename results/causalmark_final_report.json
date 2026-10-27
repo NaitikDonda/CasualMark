@@ -1,0 +1,22 @@
+{
+  "project": "CausalMark",
+  "generated_at": "2026-10-27T14:25:04",
+  "experiment_evaluation": {
+    "number_of_experiments": 3,
+    "average_observed_lift_pp": 1.3333333333333333,
+    "statistically_significant_experiments": 3
+  },
+  "ai_quality": {
+    "total_ai_responses": 3,
+    "responses_with_lift": 1,
+    "responses_mentioning_confidence": 3,
+    "responses_mentioning_p_value": 3,
+    "empty_responses": 0,
+    "average_word_count": 97.33333333333333
+  },
+  "artifacts": {
+    "evaluation_results": "/Users/naitikdonda/Desktop/CasualMark v3/results/final_experiment_metrics.csv",
+    "ai_quality_summary": "/Users/naitikdonda/Desktop/CasualMark v3/results/ai_quality_summary.json",
+    "experiment_history": "/Users/naitikdonda/Desktop/CasualMark v3/results/experiment_history.jsonl"
+  }
+}

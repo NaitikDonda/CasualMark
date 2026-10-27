@@ -1,0 +1,11 @@
+{
+  "notebook": "04_RAG_Decision_Engine.ipynb",
+  "retrieval_method": "TF-IDF",
+  "evidence_dataset": "Hillstrom email marketing dataset",
+  "retrieval_review_complete": false,
+  "manual_precision": null,
+  "semantic_grounding_verified": false,
+  "causal_effects_verified": false,
+  "review_file": "/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/hillstrom_retrieved_evidence_review.csv",
+  "metrics_file": "/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/hillstrom_evidence_review_metrics.json"
+}

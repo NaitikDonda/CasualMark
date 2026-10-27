@@ -1,0 +1,10 @@
+check,passed
+Evaluation report exists,True
+Descriptive results saved,True
+Confidence intervals saved,True
+Observed difference saved,True
+Uplift ranking saved,True
+Uplift segments saved,True
+Targeting summary saved,True
+Model evaluation file exists,True
+Causal effect verified,False

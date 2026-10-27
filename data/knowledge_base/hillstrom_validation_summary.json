@@ -1,0 +1,15 @@
+{
+  "dataset_rows": 64000,
+  "segment_count": 3,
+  "quality_report_exists": true,
+  "segment_validation_exists": true,
+  "consistency_checks": {
+    "segment_counts_match": true,
+    "conversion_rates_in_range": true,
+    "visit_rates_in_range": true,
+    "spend_totals_match": true
+  },
+  "semantic_grounding_verified": false,
+  "causal_effects_verified": false,
+  "validation_passed": true
+}

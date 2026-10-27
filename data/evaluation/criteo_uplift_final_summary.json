@@ -1,0 +1,15 @@
+{
+  "project": "CausalMark",
+  "notebook": "05_CausalMark_Evaluation.ipynb",
+  "uplift_artifacts": {
+    "prediction_quality": true,
+    "decile_quality": true,
+    "observed_conversion_by_decile": true,
+    "targeting_comparison": true
+  },
+  "prediction_quality_available": true,
+  "decile_analysis_available": true,
+  "observed_outcome_analysis_available": true,
+  "causal_effect_verified": false,
+  "next_requirement": "Confirm that observed outcomes align with the model's held-out test predictions, then evaluate incremental treatment effects by uplift group."
+}

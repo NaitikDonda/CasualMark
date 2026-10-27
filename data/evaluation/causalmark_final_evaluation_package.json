@@ -1,0 +1,61 @@
+{
+  "project": "CausalMark",
+  "dataset": "Criteo uplift sample",
+  "rows_evaluated": 50000,
+  "model_metrics": {
+    "Factual MAE": 0.005406771777246411,
+    "Factual RMSE": 0.05141600921850798,
+    "Mean Predicted Uplift": 0.0003648971994799864,
+    "Median Predicted Uplift": 0.0
+  },
+  "cross_validation": {
+    "folds": 5,
+    "mean_factual_rmse": 0.051543009558395914,
+    "std_factual_rmse": 0.0013309563740712285,
+    "mean_predicted_uplift": 0.0003410894871802435,
+    "fold_results": [
+      {
+        "fold": 1,
+        "factual_rmse": 0.052286648378504136,
+        "mean_predicted_uplift": 6.55211051528567e-05
+      },
+      {
+        "fold": 2,
+        "factual_rmse": 0.04972454595883346,
+        "mean_predicted_uplift": 0.00033452006875707457
+      },
+      {
+        "fold": 3,
+        "factual_rmse": 0.050847359148825495,
+        "mean_predicted_uplift": 0.0005862398458242228
+      },
+      {
+        "fold": 4,
+        "factual_rmse": 0.05319465116881836,
+        "mean_predicted_uplift": 9.81611341747581e-05
+      },
+      {
+        "fold": 5,
+        "factual_rmse": 0.05166184313699811,
+        "mean_predicted_uplift": 0.0006210052819923053
+      }
+    ]
+  },
+  "evaluation_artifacts": {
+    "evaluation_report": "/Users/naitikdonda/Desktop/CasualMark v3/data/evaluation/causalmark_evaluation_report.json",
+    "model_metrics": "/Users/naitikdonda/Desktop/CasualMark v3/data/evaluation/criteo_model_evaluation.json",
+    "final_metrics_csv": "/Users/naitikdonda/Desktop/CasualMark v3/data/evaluation/causalmark_final_model_metrics.csv",
+    "validation_csv": "/Users/naitikdonda/Desktop/CasualMark v3/data/evaluation/causalmark_final_validation.csv",
+    "artifact_inventory": "/Users/naitikdonda/Desktop/CasualMark v3/data/evaluation/causalmark_final_artifact_inventory.csv"
+  },
+  "validation": {
+    "citation_validation_passed": true,
+    "source_consistency_passed": true,
+    "causal_effect_verified": false
+  },
+  "limitations": [
+    "Observed treatment-group differences are descriptive.",
+    "Predicted uplift is not proof of a causal effect.",
+    "Causal effect verification remains incomplete."
+  ]
+}

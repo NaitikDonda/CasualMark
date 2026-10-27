@@ -1,0 +1,22 @@
+{
+  "experiment_id": "causalmark_ab_001",
+  "created_at": "2026-10-27T13:53:59",
+  "inputs": {
+    "treatment_conversions": 800,
+    "treatment_users": 10000,
+    "control_conversions": 600,
+    "control_users": 10000
+  },
+  "metrics": {
+    "treatment_rate": 0.08,
+    "control_rate": 0.06,
+    "absolute_lift_pp": 2.0000000000000004,
+    "relative_lift_percent": 33.33333333333334,
+    "ci_95_low_pp": 1.2936930589336375,
+    "ci_95_high_pp": 2.7083139127824083,
+    "z_score": 5.542739954736933,
+    "p_value": 2.9777492678159063e-08,
+    "statistically_significant_at_5_percent": true
+  },
+  "ai_analysis": "==========\n<think>\n\n</think>\n\n1. **Concise results summary**:  \nThe treatment group, assigned at an 8% rate, outperformed the control group at a 6% rate. The campaign delivered an absolute incremental impact of 2.00 units, or 33.33% relative improvement. The treatment effect is large, well above the control, and has a 95% confidence interval from 1.29 to 2.71, establishing a strong campaign effect.\n\n2. **What the 95% confidence interval means**:  \nThe 95% confidence interval of 1.29 to 2.71 units means we can be 95% confident the true incremental campaign effect lies within this range. The campaign has a consistent and reliable incremental impact, though this is not the absolute campaign effect, but the additional impact it has over the control.\n\n3. **Is the treatment effect statistically significant?**:  \nYes, the campaign effect is statistically significant at the 5% significance level. The treatment has a z-score of 5.54 and a p-value of 2.98e-08, which is much less than 0.0\n==========\nPrompt: 311 tokens, 329.736 tokens-per-sec\nGeneration: 250 tokens, 48.378 tokens-per-sec\nPeak memory: 5.441 GB\n"
+}

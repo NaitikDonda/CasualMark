@@ -1,0 +1,2 @@
+uplift_column,valid_predictions,positive_predictions,negative_predictions,zero_predictions,positive_prediction_pct,mean_uplift,median_uplift
+predicted_uplift,35000,6128,5352,23520,17.50857142857143,0.0003648971994799864,0.0

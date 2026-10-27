@@ -1,0 +1,9 @@
+component,path,status
+Fine-tuned model adapter,/Users/naitikdonda/Desktop/CasualMark v3/models/finetuned/causalmark-qwen3-v2,Available
+Experiment history,/Users/naitikdonda/Desktop/CasualMark v3/results/experiment_history.jsonl,Available
+Campaign summary,/Users/naitikdonda/Desktop/CasualMark v3/results/campaign_summary.json,Available
+AI campaign report,/Users/naitikdonda/Desktop/CasualMark v3/results/ai_campaign_report.txt,Available
+Experiment evaluation CSV,/Users/naitikdonda/Desktop/CasualMark v3/results/final_experiment_metrics.csv,Available
+AI quality summary,/Users/naitikdonda/Desktop/CasualMark v3/results/ai_quality_summary.json,Available
+Final evaluation summary,/Users/naitikdonda/Desktop/CasualMark v3/results/final_evaluation_summary.json,Available
+Dashboard CSV,/Users/naitikdonda/Desktop/CasualMark v3/results/experiment_dashboard.csv,Available

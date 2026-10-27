@@ -1,0 +1,40 @@
+Dataset: Criteo Uplift Sample
+Source: Local Criteo dataset
+Rows inspected: 50000
+Number of columns: 16
+Duplicate rows in sample: 69
+Missing values in sample: 0
+
+Column descriptions based on observed data:
+- f0: data_type=float64, unique_values=42577, missing_values=0
+  Sample values: ['12.616364906986497', '22.455778767520044', '24.770804647933097', '25.747690821345074', '12.782296916699263']
+- f1: data_type=float64, unique_values=16, missing_values=0
+  Sample values: ['10.059654474774547', '10.67951260623903', '11.119308949549094', '11.46044149585213', '13.579750445401224']
+- f2: data_type=float64, unique_values=12971, missing_values=0
+  Sample values: ['8.976428838331028', '9.002689495197341', '8.964775175534072', '9.002800861653911', '9.037998700075555']
+- f3: data_type=float64, unique_values=197, missing_values=0
+  Sample values: ['4.679881620097284', '1.1149815143599175', '1.614661665223978', '2.293959168481399', '2.9347800451266948']
+- f4: data_type=float64, unique_values=65, missing_values=0
+  Sample values: ['10.280525225748212', '13.738506405440273', '11.02958446403841', '11.973287497876754', '11.561050451496424']
+- f5: data_type=float64, unique_values=28, missing_values=0
+  Sample values: ['4.115453421277861', '3.0130643418630596', '2.2309068425557226', '1.6242183527412077', '0.7094088863775863']
+- f6: data_type=float64, unique_values=453, missing_values=0
+  Sample values: ['0.29444271125560606', '-2.411114577488788', '-3.9937641349570603', '-12.1909191429308', '-7.011751650975883']
+- f7: data_type=float64, unique_values=2484, missing_values=0
+  Sample values: ['4.833814577796811', '7.016416657810133', '7.551362423808396', '10.515043650201335', '11.771395255671214']
+- f8: data_type=float64, unique_values=560, missing_values=0
+  Sample values: ['3.9553959684262416', '3.94371597870175', '3.9346562748271774', '3.971857989350875', '3.915573968052625']
+- f9: data_type=float64, unique_values=263, missing_values=0
+  Sample values: ['13.190055934673358', '16.226044033102564', '31.477539575896326', '31.796211837122645', '23.570167804020073']
+- f10: data_type=float64, unique_values=2348, missing_values=0
+  Sample values: ['5.300374864042156', '6.34332295044399', '5.69703514674366', '6.413824401996069', '5.30317707761479']
+- f11: data_type=float64, unique_values=32, missing_values=0
+  Sample values: ['-0.16867922100056124', '-0.2673502399367461', '-0.33735844200112247', '-0.3916610222649175', '-0.5603402432654788']
+- treatment: data_type=int64, unique_values=1, missing_values=0
+  Sample values: ['1']
+- conversion: data_type=int64, unique_values=2, missing_values=0
+  Sample values: ['0', '1']
+- visit: data_type=int64, unique_values=2, missing_values=0
+  Sample values: ['0', '1']
+- exposure: data_type=int64, unique_values=2, missing_values=0
+  Sample values: ['0', '1']

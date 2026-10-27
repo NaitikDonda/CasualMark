@@ -1,0 +1,16 @@
+{
+  "project": "CausalMark",
+  "notebook": "05_CausalMark_Evaluation.ipynb",
+  "generated_at": "2026-10-27T17:16:19",
+  "artifacts_expected": 8,
+  "artifacts_present": 7,
+  "missing_artifacts": [
+    "causalmark_notebook5_validation.csv"
+  ],
+  "artifact_inventory_complete": false,
+  "causal_effect_verified": false,
+  "notes": [
+    "Model prediction metrics and predicted uplift are not proof of causal impact.",
+    "Validate targeting performance before claiming incremental campaign outcomes."
+  ]
+}

@@ -1,0 +1,5 @@
+column,dtype,missing,unique_values,valid
+segment,str,0,3,True
+visit,int64,0,2,True
+conversion,int64,0,2,True
+spend,float64,0,429,True

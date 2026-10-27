@@ -1,0 +1,32 @@
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Next.js & Node
+web-app/node_modules/
+web-app/.next/
+web-app/out/
+node_modules/
+.npm
+
+# OS & Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Large raw training / instruction datasets (exceeding Git limits)
+data/marketing_instructions/*.jsonl
+data/marketing_instructions/raw/criteo-research-uplift-v2.1.csv.gz
+data/user_uploads/*.csv
+data/marketing_instructions/*.jsonl

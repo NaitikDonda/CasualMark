@@ -1,0 +1,10 @@
+file,exists,size_bytes
+evaluation_artifact_inventory.csv,True,818
+criteo_treatment_group_summary.csv,True,337
+criteo_conversion_confidence_intervals.csv,True,285
+criteo_observed_conversion_difference.csv,True,289
+criteo_evaluation_summary.json,True,276
+criteo_uplift_ranking_summary.csv,True,224
+criteo_uplift_decile_summary.csv,True,582
+criteo_targeting_strategy_summary.csv,True,516
+causalmark_evaluation_report.json,True,510

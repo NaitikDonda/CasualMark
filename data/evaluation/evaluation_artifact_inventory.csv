@@ -1,0 +1,7 @@
+file,exists,size_bytes,path
+hillstrom_segment_evidence.jsonl,True,1050.0,/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/hillstrom_segment_evidence.jsonl
+criteo_dataset_profile.txt,True,2816.0,/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/criteo_dataset_profile.txt
+criteo_schema_report.csv,True,409.0,/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/criteo_schema_report.csv
+hillstrom_rag_evaluation.json,False,,/Users/naitikdonda/Desktop/CasualMark v3/data/evaluation/hillstrom_rag_evaluation.json
+causalmark_rag_pipeline_report.json,True,505.0,/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/causalmark_rag_pipeline_report.json
+causalmark_rag_final_status.json,True,593.0,/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/causalmark_rag_final_status.json

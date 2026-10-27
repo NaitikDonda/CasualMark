@@ -1,0 +1,5 @@
+question,retrieved_evidence,top_source,top_segment,top_score,relevant_evidence_confirmed,review_notes
+Which marketing segment had the highest conversion rate?,3,HILL-002,No E-Mail,0.2585989023640542,,
+How did average spend differ across marketing segments?,3,HILL-002,No E-Mail,0.23833808549366475,,
+Which segment had the highest visit rate?,3,HILL-002,No E-Mail,0.23833808549366475,,
+Can these descriptive results prove that email marketing caused higher conversions?,3,HILL-002,No E-Mail,0.14363962601955466,,

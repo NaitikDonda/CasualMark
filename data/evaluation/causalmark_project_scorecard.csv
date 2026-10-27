@@ -1,0 +1,9 @@
+Category,Metric,Result,Status
+Dataset,Rows evaluated,50000,Complete
+Prediction,Factual MAE,0.005406771777246411,Measured
+Prediction,Factual RMSE,0.05141600921850798,Measured
+Uplift,Mean predicted uplift,0.0003648971994799864,Model estimate
+Validation,Cross-validation folds,5,Measured
+RAG,Citation validation,True,Passed
+RAG,Source consistency,True,Passed
+Causal validation,Causal effect verified,False,Not verified

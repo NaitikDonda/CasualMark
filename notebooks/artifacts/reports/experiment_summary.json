@@ -1,0 +1,19 @@
+{
+    "dataset": "Hillstrom Email Marketing Experiment",
+    "treatment_group": "Mens E-Mail",
+    "control_group": "No E-Mail",
+    "outcome": "conversion",
+    "total_customers": 42613,
+    "treatment_customers": 21307,
+    "control_customers": 21306,
+    "control_conversion_rate": 0.005726086548390125,
+    "treatment_conversion_rate": 0.01253109306800582,
+    "observed_conversion_difference": 0.006805006519615695,
+    "test_set_naive_ate": 0.006570302233902759,
+    "estimated_ate_models": {
+        "S-learner": 0.0018232377277174203,
+        "T-learner": 0.002712467240631539,
+        "X-learner": 0.002808308840849032,
+        "Causal Forest": 0.002665919891603035
+    }
+}

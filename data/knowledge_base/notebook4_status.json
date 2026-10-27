@@ -1,0 +1,11 @@
+{
+  "notebook": "04_RAG_Decision_Engine.ipynb",
+  "retrieval_method": "TF-IDF",
+  "evidence_source": "Hillstrom marketing dataset",
+  "data_consistency_verified": true,
+  "citation_validation_passed": true,
+  "semantic_grounding_verified": false,
+  "causal_effects_verified": false,
+  "artifacts_present": 8,
+  "artifacts_expected": 8
+}

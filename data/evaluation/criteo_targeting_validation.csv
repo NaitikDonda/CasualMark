@@ -1,0 +1,7 @@
+check,passed
+Recommendations file exists,True
+Strategy comparison exists,True
+Strategies evaluated,True
+Target fractions are valid,True
+Predicted uplift values are numeric,True
+Causal effect verified,False

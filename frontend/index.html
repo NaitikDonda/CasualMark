@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CausalMark — Experiment Intelligence</title>
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #080b12;
+  --panel: rgba(20, 26, 39, .82);
+  --border: rgba(255,255,255,.09);
+  --muted: #929bb0;
+  --text: #f1f4fb;
+  --accent: #a6f36a;
+  --blue: #8ba8ff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh;
+  background: radial-gradient(ellipse at 15% 0%, #1b2941 0, transparent 38%), var(--bg);
+  color: var(--text);
+  font: 14px/1.55 Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+header {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:22px 5%; border-bottom:1px solid var(--border);
+  background:rgba(8,11,18,.75); gap:16px;
+}
+.brand { font-size:21px; font-weight:800; letter-spacing:-.8px; }
+.brand span { color:var(--accent); }
+.status { color:var(--muted); font-size:12px; }
+main { max-width:1200px; margin:auto; padding:42px 22px 70px; }
+.eyebrow { color:var(--accent); font-size:11px; letter-spacing:2px; font-weight:700; }
+h1 { font-size:clamp(30px,5vw,46px); letter-spacing:-1.8px; line-height:1.1; margin:12px 0; }
+.subtitle { color:var(--muted); max-width:650px; margin-bottom:30px; }
+.layout { display:grid; grid-template-columns:340px minmax(0,1fr); gap:20px; }
+.panel {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:18px; padding:24px; backdrop-filter:blur(18px);
+}
+h2 { font-size:16px; margin:0 0 20px; }
+label { display:block; color:#b8c0d0; font-size:12px; margin:15px 0 7px; }
+input {
+  width:100%; background:#0b101a; border:1px solid #30394a;
+  border-radius:9px; padding:12px; color:var(--text); outline:none;
+}
+input:focus { border-color:var(--accent); }
+button {
+  border:0; border-radius:10px; padding:13px 16px; cursor:pointer;
+  font-weight:750; background:var(--accent); color:#10170b; width:100%; margin-top:20px;
+}
+button:disabled { opacity:.55; cursor:wait; }
+.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.metric { background:#0d121e; border:1px solid var(--border); border-radius:13px; padding:18px; min-width:0; }
+.metric small { color:var(--muted); display:block; margin-bottom:10px; }
+.value { font-size:clamp(22px,3vw,30px); font-weight:750; letter-spacing:-.8px; overflow-wrap:anywhere; }
+.green { color:var(--accent); } .blue { color:var(--blue); }
+.section { margin-top:18px; }
+.result { white-space:pre-wrap; color:#dce3f2; line-height:1.8; }
+.pill { display:inline-block; padding:5px 9px; border-radius:7px; font-size:11px; background:#17251b; color:var(--accent); }
+.muted { color:var(--muted); }
+#error { color:#ff9999; white-space:pre-wrap; margin-top:14px; }
+.hidden { display:none; }
+footer { text-align:center; padding:20px; color:var(--muted); font-size:12px; }
+@media(max-width:800px) { .layout { grid-template-columns:1fr; } main { padding-top:28px; } }
+@media(max-width:440px) { .grid { grid-template-columns:1fr; } header { padding:18px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">causal<span>mark</span></div>
+  <div class="status" id="apiStatus">Checking local API…</div>
+</header>
+<main>
+  <div class="eyebrow">EXPERIMENT INTELLIGENCE / OVERVIEW</div>
+  <h1>Measure what<br>actually moves growth.</h1>
+  <p class="subtitle">Analyze conversion experiments, quantify uplift, test statistical significance, and generate an interpretation using your local Qwen3 model.</p>
+
+  <div class="layout">
+    <section class="panel">
+      <h2>Experiment configuration</h2>
+      <form id="experimentForm">
+        <label for="experimentId">Experiment ID</label>
+        <input id="experimentId" value="EXP_DEMO" required>
+        <label for="treatmentConversions">Treatment conversions</label>
+        <input id="treatmentConversions" type="number" min="0" step="1" value="900" required>
+        <label for="treatmentUsers">Treatment group size</label>
+        <input id="treatmentUsers" type="number" min="1" step="1" value="10000" required>
+        <label for="controlConversions">Control conversions</label>
+        <input id="controlConversions" type="number" min="0" step="1" value="700" required>
+        <label for="controlUsers">Control group size</label>
+        <input id="controlUsers" type="number" min="1" step="1" value="10000" required>
+        <button id="analyzeButton" type="submit">Analyze experiment →</button>
+      </form>
+      <div id="error"></div>
+    </section>
+
+    <div>
+      <section class="panel">
+        <h2>Experiment results <span class="pill" id="resultStatus">Awaiting data</span></h2>
+        <div class="grid">
+          <div class="metric"><small>Treatment conversion</small><div class="value" id="treatmentRate">—</div></div>
+          <div class="metric"><small>Control conversion</small><div class="value" id="controlRate">—</div></div>
+          <div class="metric"><small>Absolute lift</small><div class="value green" id="absoluteLift">—</div></div>
+          <div class="metric"><small>Relative lift</small><div class="value blue" id="relativeLift">—</div></div>
+          <div class="metric"><small>P-value</small><div class="value" id="pValue">—</div></div>
+          <div class="metric"><small>95% confidence interval</small><div class="value" style="font-size:19px" id="confidenceInterval">—</div><small>Absolute lift, percentage points</small></div>
+        </div>
+      </section>
+
+      <section class="panel section">
+        <h2>Verified analysis</h2>
+        <div id="verifiedSummary" class="result muted">Submit an experiment to see the deterministic statistical summary.</div>
+      </section>
+
+      <section class="panel section">
+        <h2>Local Qwen3 interpretation</h2>
+        <div id="interpretation" class="result muted">The local model's interpretation will appear here after analysis.</div>
+      </section>
+    </div>
+  </div>
+</main>
+<footer>CausalMark · Local-first experiment intelligence</footer>
+<script>
+const API = "http://127.0.0.1:8001";
+const $ = id => document.getElementById(id);
+
+async function checkAPI() {
+  try {
+    const r = await fetch(`${API}/health`);
+    if (!r.ok) throw new Error("API returned HTTP " + r.status);
+    $("apiStatus").textContent = "● Local API connected";
+    $("apiStatus").style.color = "#a6f36a";
+  } catch {
+    $("apiStatus").textContent = "● API unavailable — start backend";
+    $("apiStatus").style.color = "#ff9999";
+  }
+}
+
+$("experimentForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  $("error").textContent = "";
+  $("analyzeButton").disabled = true;
+  $("analyzeButton").textContent = "Analyzing…";
+  $("verifiedSummary").textContent = "Calculating experiment metrics…";
+  $("interpretation").textContent = "Waiting for local Qwen3…";
+
+  const payload = {
+    experiment_id: $("experimentId").value.trim(),
+    treatment_conversions: Number($("treatmentConversions").value),
+    treatment_users: Number($("treatmentUsers").value),
+    control_conversions: Number($("controlConversions").value),
+    control_users: Number($("controlUsers").value)
+  };
+
+  try {
+    const response = await fetch(`${API}/interpret`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(payload)
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(
+      typeof data.detail === "string" ? data.detail : JSON.stringify(data.detail, null, 2)
+    );
+
+    const c = data.analysis.conversion_analysis;
+    const s = data.analysis.significance_analysis;
+    const ci = data.analysis.confidence_interval;
+
+    $("treatmentRate").textContent = c.treatment_rate_pct.toFixed(2) + "%";
+    $("controlRate").textContent = c.control_rate_pct.toFixed(2) + "%";
+    $("absoluteLift").textContent = c.absolute_lift_pp.toFixed(2) + " pp";
+    $("relativeLift").textContent = c.relative_lift_pct.toFixed(2) + "%";
+    $("pValue").textContent = Number(s.p_value).toPrecision(4);
+    $("confidenceInterval").textContent =
+      ci.ci_lower_pp.toFixed(2) + " to " + ci.ci_upper_pp.toFixed(2);
+    $("resultStatus").textContent = s.statistically_significant
+      ? "Statistically significant" : "Not statistically significant";
+    $("resultStatus").style.background = s.statistically_significant ? "#17251b" : "#282131";
+    $("verifiedSummary").textContent = data.summary || "No verified summary returned.";
+    $("interpretation").textContent = data.interpretation || "No model interpretation returned.";
+    $("verifiedSummary").classList.remove("muted");
+    $("interpretation").classList.remove("muted");
+  } catch (error) {
+    $("error").textContent = "Analysis failed: " + error.message +
+      "\nCheck that the API is running and allows requests from this page.";
+    $("verifiedSummary").textContent = "No result available.";
+    $("interpretation").textContent = "No interpretation available.";
+  } finally {
+    $("analyzeButton").disabled = false;
+    $("analyzeButton").textContent = "Analyze experiment →";
+  }
+});
+
+checkAPI();
+</script>
+</body>
+</html>

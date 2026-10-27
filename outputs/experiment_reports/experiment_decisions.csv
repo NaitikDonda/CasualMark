@@ -1,0 +1,4 @@
+experiment_id,absolute_lift_pp,p_value,ci_lower_pp,ci_upper_pp,decision
+EXP001,1.0,0.007261,0.2701,1.7299,POSITIVE EVIDENCE — evaluate profitability before scaling
+EXP002,0.2,0.520334,-0.4098,0.8098,INCONCLUSIVE — collect more evidence
+EXP003,2.0,0.000228,0.9373,3.0627,POSITIVE EVIDENCE — evaluate profitability before scaling

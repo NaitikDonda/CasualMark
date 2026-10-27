@@ -1,0 +1,7 @@
+{
+  "total_experiments": 3,
+  "positive_lift_experiments": 3,
+  "significant_experiments": 3,
+  "average_lift_pp": 1.3333333333333328,
+  "best_observed_campaign": "Campaign A"
+}

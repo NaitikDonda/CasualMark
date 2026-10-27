@@ -1,0 +1,38 @@
+{
+  "dataset": "Criteo Uplift Benchmark",
+  "rows_used": 140000,
+  "features_used": 12,
+  "training_rows": 105000,
+  "testing_rows": 35000,
+  "treatment_groups": {
+    "1": 119096,
+    "0": 20904
+  },
+  "conversion_rates": {
+    "0": 0.0025832376578645237,
+    "1": 0.0030311681332706388
+  },
+  "metrics": {
+    "Factual MAE": 0.005406771777246411,
+    "Factual RMSE": 0.05141600921850798,
+    "Mean Predicted Uplift": 0.0003648971994799864,
+    "Median Predicted Uplift": 0.0
+  },
+  "uplift_segments": {
+    "Top 20% predicted uplift": {
+      "customers": 7000,
+      "mean_predicted_uplift": 0.00630218156300646
+    },
+    "Remaining 80%": {
+      "customers": 28000,
+      "mean_predicted_uplift": -0.001119423891401632
+    }
+  },
+  "evaluation_method": "T-Learner with Random Forest",
+  "prediction_target": "Individual treatment effect",
+  "limitations": [
+    "Individual treatment effects are not directly observed.",
+    "Predicted uplift should be evaluated using a valid randomized holdout.",
+    "Results depend on treatment-group representation and feature quality."
+  ]
+}

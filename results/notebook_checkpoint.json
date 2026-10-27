@@ -1,0 +1,8 @@
+{
+  "project": "CausalMark",
+  "last_cell_sequence": 132,
+  "model_adapter": "/Users/naitikdonda/Desktop/CasualMark v3/models/finetuned/causalmark-qwen3-v2",
+  "results_directory": "/Users/naitikdonda/Desktop/CasualMark v3/results",
+  "status_file": "/Users/naitikdonda/Desktop/CasualMark v3/results/project_status.json",
+  "notebook_stage": "Experiment evaluation and reporting"
+}

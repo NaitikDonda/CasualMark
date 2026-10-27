@@ -1,0 +1,14 @@
+{
+  "project": "CausalMark",
+  "notebook": "04_RAG_Decision_Engine.ipynb",
+  "retrieval_method": "TF-IDF",
+  "evidence_documents": 3,
+  "indexed_documents": 3,
+  "citation_validation_passed": true,
+  "source_consistency_passed": true,
+  "semantic_grounding_verified": false,
+  "causal_effects_verified": false,
+  "evaluation_file": "/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/hillstrom_rag_evaluation.json",
+  "pipeline_report_file": "/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/causalmark_rag_pipeline_report.json",
+  "evidence_consistency_verified": true
+}

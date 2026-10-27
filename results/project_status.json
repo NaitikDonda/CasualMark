@@ -1,0 +1,11 @@
+{
+  "Fine-tuned model": true,
+  "Experiment history": true,
+  "Campaign summary": true,
+  "AI campaign report": true,
+  "Experiment evaluations": true,
+  "AI quality summary": true,
+  "Final JSON report": true,
+  "Final Markdown report": true,
+  "Evaluation ZIP": true
+}

@@ -1,0 +1,9 @@
+file,exists,size_kb
+notebooks/01_Causal_Experiment_Engine.ipynb,True,84.45
+notebooks/02_Uplift_Statistical_and_Criteo.ipynb,True,625.12
+notebooks/03_NLP_Finetuning_Small_Model.ipynb,True,1723.93
+notebooks/04_RAG_Decision_Engine.ipynb,True,1056.83
+notebooks/05_CausalMark_Evaluation.ipynb,True,360.19
+data/evaluation/causalmark_final_evaluation_package.json,True,2.09
+data/evaluation/causalmark_executive_summary.txt,True,0.81
+data/evaluation/causalmark_handoff_checklist.csv,True,0.46

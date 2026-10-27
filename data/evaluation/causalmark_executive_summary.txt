@@ -1,0 +1,35 @@
+CAUSALMARK — FINAL EVALUATION SUMMARY
+=====================================
+
+Dataset
+-------
+Name: Criteo uplift sample
+Rows evaluated: 50000
+
+Model Performance
+-----------------
+Factual MAE: 0.005406771777246411
+Factual RMSE: 0.05141600921850798
+Mean predicted uplift: 0.0003648971994799864
+Median predicted uplift: 0.0
+
+Cross-Validation
+----------------
+Folds: 5
+Mean factual RMSE: 0.051543009558395914
+RMSE standard deviation: 0.0013309563740712285
+
+RAG Validation
+--------------
+Citation validation: True
+Source consistency: True
+
+Causal Validation
+-----------------
+Causal effect verified: False
+
+Limitations
+-----------
+- Predictive performance does not establish causal impact.
+- Predicted uplift is a model estimate, not a measured campaign effect.
+- Randomized experimentation is needed to validate incremental outcomes.

@@ -1,0 +1,14 @@
+{
+  "dataset_rows": 64000,
+  "segment_count": 3,
+  "checks_passed": 5,
+  "checks_total": 5,
+  "data_consistency_verified": true,
+  "semantic_grounding_verified": false,
+  "causal_effects_verified": false,
+  "reports": [
+    "/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/hillstrom_data_quality_report.csv",
+    "/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/hillstrom_segment_validation.csv",
+    "/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/hillstrom_validation_summary.json"
+  ]
+}

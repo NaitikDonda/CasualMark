@@ -1,0 +1,10 @@
+artifact,exists,size_kb
+causalmark_evaluation_report.json,True,0.92
+criteo_model_evaluation.json,True,1.54
+causalmark_final_evaluation_package.json,True,2.09
+causalmark_project_scorecard.csv,True,0.41
+criteo_uplift_targeting_quality.csv,True,0.59
+criteo_uplift_strategy_comparison.csv,True,0.53
+criteo_targeting_recommendations.json,True,2.06
+criteo_targeting_validation.csv,True,0.2
+criteo_uplift_targeting_curve.png,True,49.02

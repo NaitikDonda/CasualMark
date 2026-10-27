@@ -1,0 +1,4 @@
+policy,customers_selected,observed_conversion_difference
+Model-based top 20%,8522,0.033532034361322315
+Random targeting 20%,8522,0.006552792307465177
+Target everyone,42613,0.006805006519615695

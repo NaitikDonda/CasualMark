@@ -1,0 +1,13 @@
+{
+  "dataset": "Criteo uplift sample",
+  "rows_evaluated": 50000,
+  "treatment_values": [
+    0,
+    1
+  ],
+  "outcome": "conversion",
+  "group_summary_saved": true,
+  "confidence_intervals_saved": true,
+  "observed_difference_saved": true,
+  "causal_effect_verified": false
+}

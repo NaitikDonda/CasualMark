@@ -1,0 +1,4 @@
+experiment,has_lift,mentions_confidence_interval,mentions_p_value,word_count,empty_output
+Campaign A,False,True,True,92,False
+Campaign B,True,True,True,104,False
+Campaign C,False,True,True,96,False

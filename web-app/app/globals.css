@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    /* Refined Professional Light Mode */
+    --bg-main: #f5f7fa;
+    --bg-card: #ffffff;
+    --bg-elevated: #f8fafc;
+    --border-color: #dce3ec;
+    --border-subtle: #e2e8f0;
+    --text-primary: #172033;
+    --text-muted: #536176;
+    --accent-primary: #7047d6;
+    --accent-primary-hover: #5d35c4;
+    --status-positive: #087f5b;
+    --status-warning: #946200;
+    --status-error: #c53030;
+    --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .dark {
+    /* Refined Professional Dark Mode (charcoal, slate, near-black) */
+    --bg-main: #090b10;
+    --bg-card: #121722;
+    --bg-elevated: #181f2b;
+    --border-color: #283244;
+    --border-subtle: rgba(255, 255, 255, 0.07);
+    --text-primary: #f1f5f9;
+    --text-muted: #a0aec0;
+    --accent-primary: #8b5cf6;
+    --accent-primary-hover: #7c3aed;
+    --status-positive: #34d399;
+    --status-warning: #fbbf24;
+    --status-error: #f87171;
+    --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  }
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Restrained Enterprise Surface Utilities */
+.glass-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+}
+
+.glass-panel-subtle {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.45);
+}
+
+/* Responsive Table container utility */
+.table-responsive-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+

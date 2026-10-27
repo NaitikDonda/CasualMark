@@ -1,0 +1,16 @@
+{
+  "prediction_file": "/Users/naitikdonda/Desktop/CasualMark v3/notebooks/artifacts/metrics/criteo_test_uplift_predictions.csv",
+  "rows": 35000,
+  "columns": [
+    "treatment",
+    "conversion",
+    "predicted_uplift"
+  ],
+  "checks": {
+    "has_treatment": true,
+    "has_conversion": true,
+    "has_uplift_prediction": true,
+    "has_customer_id": false
+  },
+  "observed_effect_analysis_possible_from_prediction_file": true
+}

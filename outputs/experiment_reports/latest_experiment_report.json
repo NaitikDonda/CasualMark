@@ -1,0 +1,31 @@
+{
+  "project": "CausalMark",
+  "report_type": "experiment_analysis",
+  "generated_at": "2026-10-27T09:41:19.915698+00:00",
+  "analysis": {
+    "conversion_analysis": {
+      "treatment_rate_pct": 9.0,
+      "control_rate_pct": 7.0,
+      "absolute_lift_pp": 2.0,
+      "relative_lift_pct": 28.5714
+    },
+    "significance_analysis": {
+      "treatment_rate_pct": 9.0,
+      "control_rate_pct": 7.0,
+      "absolute_lift_pp": 2.0,
+      "z_score": 3.686,
+      "p_value": 0.000228,
+      "alpha": 0.05,
+      "statistically_significant": true
+    },
+    "campaign_economics": {
+      "incremental_conversion_rate": 0.02,
+      "estimated_incremental_conversions": 100.0,
+      "campaign_cost": 3600,
+      "cost_per_incremental_conversion": 36.0,
+      "estimated_incremental_revenue": 2500.0,
+      "estimated_incremental_profit": -1100.0
+    }
+  },
+  "recommendation": "CAUSALMARK EXPERIMENT REPORT\n========================================\nTreatment conversion: 9.0%\nControl conversion: 7.0%\nAbsolute lift: 2.0 percentage points\nRelative lift: 28.5714%\nP-value: 0.000228\nSignificant at alpha=0.05: True\nEstimated incremental conversions: 100.0\nCampaign cost: 3600\nEstimated incremental revenue: 2500.0\nEstimated incremental profit: -1100.0\n\nRECOMMENDATION\nThe experiment shows statistically significant positive conversion lift. Evaluate profitability before scaling. Current estimated incremental profit is non-positive; revise campaign economics."
+}

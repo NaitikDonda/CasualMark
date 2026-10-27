@@ -1,0 +1,14 @@
+{
+  "questions_tested": 4,
+  "questions_with_evidence": 4,
+  "top_source_available": 4,
+  "semantic_relevance_manually_verified": false,
+  "causal_claims_verified": false,
+  "results_file": "/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/hillstrom_retrieval_quality_test.csv",
+  "evidence_review_metrics_path": "/Users/naitikdonda/Desktop/CasualMark v3/data/knowledge_base/hillstrom_evidence_review_metrics.json",
+  "evidence_rows_reviewed": 0,
+  "evidence_precision": null,
+  "evidence_review_complete": false,
+  "semantic_grounding_verified": false,
+  "causal_effects_verified": false
+}

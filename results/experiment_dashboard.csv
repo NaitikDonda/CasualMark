@@ -1,0 +1,4 @@
+experiment,created_at,treatment_rate_pct,control_rate_pct,lift_pp,p_value,adjusted_p_value,significant_after_correction,eligible_for_scaling_review
+Campaign A,2026-10-27 13:58:17,8,6.0,2.0,2.9777492678159063e-08,8.933247803447719e-08,True,True
+Campaign B,2026-10-27 13:58:17,8,7.000000000000001,0.9999999999999991,0.010869760428324,0.016304640642487,True,True
+Campaign C,2026-10-27 13:58:17,9,8.0,0.9999999999999991,0.04953054606598,0.04953054606598,True,True

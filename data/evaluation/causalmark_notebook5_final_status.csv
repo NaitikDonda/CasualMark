@@ -1,0 +1,11 @@
+artifact,exists,size_kb
+Evaluation report,True,2.32
+Completion report,True,0.49
+Summary CSV,True,0.38
+Validation CSV,False,
+Artifact inventory,True,0.38
+Prediction error chart,True,19.6
+Predicted uplift chart,True,26.79
+Treatment summary,True,0.33
+Conversion confidence intervals,True,0.28
+Targeting comparison,True,0.53
