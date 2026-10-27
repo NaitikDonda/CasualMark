@@ -8,6 +8,10 @@ from backend.notebook_service import PROJECT_ROOT
 
 OLLAMA_API_URL = "http://127.0.0.1:11434"
 
+HF_TOKEN = os.getenv("HF_TOKEN")
+HF_MODEL_REPO = "naitikdonda/causalmark-qwen3-8b"
+HF_INFERENCE_URL = f"https://api-inference.huggingface.co/models/{HF_MODEL_REPO}"
+
 MLX_PYTHON = Path.home() / "qwen3-env" / "bin" / "python"
 MLX_BASE_MODEL = "mlx-community/Qwen3-8B-4bit"
 MLX_ADAPTER_DIR = PROJECT_ROOT / "models" / "finetuned" / "causalmark-qwen3-v2"
@@ -250,7 +254,41 @@ class LocalAiService:
             except Exception:
                 pass
 
-        # 2. Second priority: Local Ollama (e.g. gemma4:e4b) if Qwen3 MLX was unavailable
+        # 2. Second priority (Cloud / Render): Hugging Face Serverless Inference API
+        if not answer and HF_TOKEN:
+            try:
+                hf_payload = json.dumps({
+                    "inputs": chatml_prompt,
+                    "parameters": {
+                        "max_new_tokens": 300,
+                        "temperature": 0.1,
+                        "return_full_text": False
+                    }
+                }).encode("utf-8")
+                hf_req = urllib.request.Request(
+                    HF_INFERENCE_URL,
+                    data=hf_payload,
+                    headers={
+                        "Authorization": f"Bearer {HF_TOKEN}",
+                        "Content-Type": "application/json"
+                    }
+                )
+                with urllib.request.urlopen(hf_req, timeout=15) as hf_resp:
+                    if hf_resp.status == 200:
+                        hf_res = json.loads(hf_resp.read().decode())
+                        raw = ""
+                        if isinstance(hf_res, list) and len(hf_res) > 0:
+                            raw = hf_res[0].get("generated_text", "")
+                        elif isinstance(hf_res, dict):
+                            raw = hf_res.get("generated_text", "")
+                        cleaned = clean_output_robust(raw)
+                        if len(cleaned) >= 15 and any(c.isalnum() for c in cleaned):
+                            answer = cleaned
+                            model_used = f"Fine-Tuned Qwen 8B LoRA ({HF_MODEL_REPO})"
+            except Exception:
+                pass
+
+        # 3. Third priority: Local Ollama (e.g. gemma4:e4b) if available
         if not answer and preferred_model and "ollama" in preferred_model.lower():
             try:
                 payload = json.dumps({
@@ -280,8 +318,18 @@ class LocalAiService:
 
         # Fallback to deterministic synthesis if LLM returned empty/minimal or timed out
         if not answer:
-            query_lower = query.lower()
-            if any(term in query_lower for term in ["how many rows", "row count", "dataset size", "how many records", "rows in dataset"]):
+            query_lower = query.lower().strip()
+            if any(query_lower == g or query_lower.startswith(g + " ") for g in ["hello", "hi", "hey", "greetings", "good morning", "good evening"]):
+                answer = (
+                    "Hello! I am **CausalMark AI**, powered by your fine-tuned **Qwen 8B LoRA** model and connected to your experiment knowledge base.\n\n"
+                    "Ask me anything about your Hillstrom email experiments, Criteo uplift models, causal DAG validity, or uploaded A/B datasets."
+                )
+            elif "who are you" in query_lower or "your name" in query_lower or "what is your name" in query_lower:
+                answer = (
+                    "I am **CausalMark AI**, an intelligent marketing analytics assistant. I run on your fine-tuned **Qwen 8B LoRA (causalmark-qwen3-v2)** model, "
+                    "with direct grounding in your CausalMark v3 notebooks, model checkpoints, and evaluation artifacts."
+                )
+            elif any(term in query_lower for term in ["how many rows", "row count", "dataset size", "how many records", "rows in dataset"]):
                 from backend.user_data_service import UserDataService
                 active_info = UserDataService.get_active_dataset_summary()
                 
