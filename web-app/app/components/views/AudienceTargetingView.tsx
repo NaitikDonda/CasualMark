@@ -25,7 +25,7 @@ export function AudienceTargetingView() {
 
   const handleExport = () => {
     // Generate sample CSV data for the targeted cohort
-    const csvData = [
+    const csvData: (string | number)[][] = [
       ["customer_id", "recency", "history", "mens", "womens", "newbie", "visit", "predicted_uplift", "uplift_decile"],
     ];
 
