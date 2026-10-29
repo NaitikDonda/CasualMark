@@ -1,0 +1,4 @@
+model_A,model_B,difference_in_incremental_value,bootstrap_difference_ci95_lower,bootstrap_difference_ci95_upper,bootstrap_replicates,bootstrap_design,interpretation
+Transformed Outcome,T-Learner,0.0015744119038162791,-0.00027983757076080717,0.0035071438269572747,1000,Paired observation resampling,Difference CI includes zero
+Transformed Outcome,S-Learner,0.0017633552563442797,-0.0015425956312471278,0.0028067537569019642,1000,Paired observation resampling,Difference CI includes zero
+S-Learner,T-Learner,-0.0001889433525280005,-0.0013281828390975553,0.003193900611085606,1000,Paired observation resampling,Difference CI includes zero

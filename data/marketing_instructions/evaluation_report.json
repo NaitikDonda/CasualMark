@@ -1,0 +1,6 @@
+{
+  "model": "Qwen3-8B-4bit + CausalMark LoRA",
+  "evaluated_examples": 20,
+  "exact_matches": 10,
+  "exact_match_score": 0.5
+}

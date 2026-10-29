@@ -1,0 +1,4 @@
+experiment_id,treatment_conversions,treatment_users,control_conversions,control_users
+EXP001,800,10000,700,10000
+EXP002,520,10000,500,10000
+EXP003,450,5000,350,5000

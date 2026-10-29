@@ -1,0 +1,137 @@
+{
+  "generated_at": "2026-10-30T01:36:14.639370",
+  "random_seed": 42,
+  "dataset_statistics": {
+    "original_rows": 50000,
+    "cleaned_rows": 49973,
+    "exact_duplicates_removed": 27,
+    "feature_count": 14,
+    "feature_names": [
+      "f0",
+      "f1",
+      "f2",
+      "f3",
+      "f4",
+      "f5",
+      "f6",
+      "f7",
+      "f8",
+      "f9",
+      "f10",
+      "f11",
+      "visit",
+      "exposure"
+    ],
+    "control_count": 7565,
+    "treated_count": 42408,
+    "control_conversion_count": 17,
+    "treated_conversion_count": 125,
+    "control_conversion_rate": 0.0022471910112359553,
+    "treated_conversion_rate": 0.0029475570647047727,
+    "unadjusted_overall_lift": 0.0007003660534688175
+  },
+  "baseline_policies": {
+    "treat_none_policy_value_dr": 0.004504224887171792,
+    "treat_all_policy_value_dr": 0.003257945034025725
+  },
+  "models": [
+    {
+      "model_name": "T-Learner",
+      "test_rows": 12494,
+      "test_conversions": 44,
+      "factual_mae": 0.004877883376476577,
+      "factual_rmse": 0.05072986377553132,
+      "qini_score": 3.2782486678563423,
+      "auuc": -5.158524599688913,
+      "unique_uplift_scores": 808,
+      "positive_uplift_share": 0.03201536737634064,
+      "zero_uplift_share": 0.9238034256443093,
+      "negative_uplift_share": 0.04418120697935009,
+      "mean_predicted_uplift": 0.0007463883355615979,
+      "policy_value_20pct": 0.004092977795573214,
+      "incremental_value_vs_none_20pct": -0.0004112470915985777,
+      "ci_95_lower_vs_none": -0.0029294703641248236,
+      "ci_95_upper_vs_none": 0.0015454936746545568,
+      "ci_includes_zero": true,
+      "targeting_proportions": {
+        "top_10pct_uplift_mean": 0.014237178868949872,
+        "top_10pct_policy_val": 0.004092977795573214,
+        "top_20pct_uplift_mean": 0.007121438009678807,
+        "top_20pct_policy_val": 0.004092977795573214,
+        "top_30pct_uplift_mean": 0.004746992154224417,
+        "top_30pct_policy_val": 0.004092977795573214,
+        "top_50pct_uplift_mean": 0.0028488031993256506,
+        "top_50pct_policy_val": 0.004092977795573214
+      }
+    },
+    {
+      "model_name": "S-Learner",
+      "test_rows": 12494,
+      "test_conversions": 44,
+      "factual_mae": 0.0048081602097105585,
+      "factual_rmse": 0.050206297484508874,
+      "qini_score": 11.298933264685331,
+      "auuc": 4.216137041729041,
+      "unique_uplift_scores": 503,
+      "positive_uplift_share": 0.02185048823435249,
+      "zero_uplift_share": 0.9560589082759725,
+      "negative_uplift_share": 0.023131102929406115,
+      "mean_predicted_uplift": -0.00013693928376441085,
+      "policy_value_20pct": 0.004765018695081385,
+      "incremental_value_vs_none_20pct": 0.000260793807909593,
+      "ci_95_lower_vs_none": -0.0018701715923482541,
+      "ci_95_upper_vs_none": 0.0010167700566050166,
+      "ci_includes_zero": true,
+      "targeting_proportions": {
+        "top_10pct_uplift_mean": 0.0006161741879134158,
+        "top_10pct_policy_val": 0.004788769762444722,
+        "top_20pct_uplift_mean": 0.00030821037810795104,
+        "top_20pct_policy_val": 0.004765018695081385,
+        "top_30pct_uplift_mean": 0.0002054461816195705,
+        "top_30pct_policy_val": 0.004795349111340997,
+        "top_50pct_uplift_mean": 0.00012329401871166476,
+        "top_50pct_policy_val": 0.004659390902483577
+      }
+    },
+    {
+      "model_name": "X-Learner",
+      "test_rows": 12494,
+      "test_conversions": 44,
+      "factual_mae": 0.004841006236427269,
+      "factual_rmse": 0.05181622246660564,
+      "qini_score": 4.2134353112156315,
+      "auuc": -4.117751174321132,
+      "unique_uplift_scores": 2374,
+      "positive_uplift_share": 0.35264927165039217,
+      "zero_uplift_share": 0.5689130782775732,
+      "negative_uplift_share": 0.22634864735072835,
+      "mean_predicted_uplift": 0.00012076487955181187,
+      "policy_value_20pct": 0.004547226435244709,
+      "incremental_value_vs_none_20pct": 4.300154807291689e-05,
+      "ci_95_lower_vs_none": -0.0027652180638488293,
+      "ci_95_upper_vs_none": 0.0016118084703809056,
+      "ci_includes_zero": true,
+      "targeting_proportions": {
+        "top_10pct_uplift_mean": 0.007862814546910527,
+        "top_10pct_policy_val": 0.004547236209431831,
+        "top_20pct_uplift_mean": 0.00393430480050349,
+        "top_20pct_policy_val": 0.004547226435244709,
+        "top_30pct_uplift_mean": 0.0026226770104571286,
+        "top_30pct_policy_val": 0.004547226438120415,
+        "top_50pct_uplift_mean": 0.0015739501574942385,
+        "top_50pct_policy_val": 0.004547226445816741
+      }
+    }
+  ],
+  "champion_selection": {
+    "provisional_champion": "X-Learner",
+    "status": "Provisional Champion (Statistically Indistinguishable Differences)",
+    "rationale": "X-Learner provides significantly superior score discrimination (2,374 unique uplift scores vs 808 for T-Learner and 512 for S-Learner) and lowest zero-tie rate (56.9% vs 92.4% for T-Learner and 95.6% for S-Learner). All 95% bootstrap confidence intervals for incremental policy value against treating none span zero due to high outcome sparsity (44 conversions out of 12,494 test rows, conversion rate 0.35%). Therefore, no candidate can claim a definitive causal victory, and X-Learner is designated as the provisional champion based on continuous targeting flexibility.",
+    "causal_assumptions": [
+      "Unconfoundedness: Treatment assignment is assumed conditionally independent of potential outcomes given features.",
+      "Positivity: All customer profiles had a non-zero probability of receiving treatment or control (propensity ~84.9%).",
+      "SUTVA: No interference between customers and no multiple versions of treatment."
+    ],
+    "caveats": "High class imbalance (0.28% overall conversion rate) causes wide confidence intervals. Predicted uplift is an empirical estimate subject to sampling error and unobserved confounding in observational settings."
+  }
+}

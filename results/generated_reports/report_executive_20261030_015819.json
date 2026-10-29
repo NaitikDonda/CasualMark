@@ -1,0 +1,18 @@
+{
+  "title": "CausalMark EXECUTIVE Report",
+  "report_type": "executive",
+  "generated_at": "2026-10-30T01:58:19.907379",
+  "input_artifacts": [
+    "data/evaluation/criteo_uplift_final_summary.json",
+    "data/evaluation/causalmark_final_model_metrics.csv"
+  ],
+  "metrics_summary": {
+    "Factual MAE": 0.005406771777246411,
+    "Factual RMSE": 0.05141600921850798,
+    "Mean Predicted Uplift": 0.0003648971994799864,
+    "Median Predicted Uplift": 0.0,
+    "Mean CV RMSE": 0.051543009558395914
+  },
+  "causal_effect_verified": false,
+  "status": "Generated successfully in isolated workspace"
+}

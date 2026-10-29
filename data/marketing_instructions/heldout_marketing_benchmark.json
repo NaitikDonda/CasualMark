@@ -1,0 +1,93 @@
+[
+  {
+    "question": "Treatment had 450 conversions from 5000 users, while control had 350 from 5000. Calculate both conversion rates, absolute lift in percentage points, and relative lift.",
+    "expected": {
+      "treatment_rate": 0.09,
+      "control_rate": 0.07,
+      "absolute_lift_pp": 2.0,
+      "relative_lift_pct": 28.5714
+    }
+  },
+  {
+    "question": "Treatment converted 120 of 2000 users and control converted 100 of 2000. Calculate the conversion rates and absolute lift.",
+    "expected": {
+      "treatment_rate": 0.06,
+      "control_rate": 0.05,
+      "absolute_lift_pp": 1.0
+    }
+  },
+  {
+    "question": "A campaign generated 240 incremental purchases and cost $3600. Calculate cost per incremental purchase.",
+    "expected": {
+      "incremental_purchases": 240,
+      "campaign_cost": 3600,
+      "cost_per_incremental_purchase": 15.0
+    }
+  },
+  {
+    "question": "A treatment group has 800 conversions among 10000 users and control has 700 among 10000. Calculate absolute lift and relative lift.",
+    "expected": {
+      "treatment_rate": 0.08,
+      "control_rate": 0.07,
+      "absolute_lift_pp": 1.0,
+      "relative_lift_pct": 14.2857
+    }
+  },
+  {
+    "question": "An experiment shows treatment conversion of 5.2% and control conversion of 5.0%, but the p-value is 0.18. Should the campaign be declared statistically significant at alpha 0.05?",
+    "expected": {
+      "absolute_lift_pp": 0.2,
+      "p_value": 0.18,
+      "alpha": 0.05,
+      "significant": false
+    }
+  },
+  {
+    "question": "A campaign has a 3 percentage-point conversion lift. Explain why this alone does not prove the campaign is profitable.",
+    "expected": {
+      "key_points": [
+        "incremental conversions",
+        "campaign cost",
+        "incremental revenue or margin"
+      ]
+    }
+  },
+  {
+    "question": "Why can comparing people who received an advertisement with people who did not receive it produce a biased estimate of causal impact?",
+    "expected": {
+      "key_points": [
+        "groups may differ before treatment",
+        "confounding",
+        "randomized assignment or adjustment"
+      ]
+    }
+  },
+  {
+    "question": "A campaign has positive observed lift but its 95% confidence interval includes zero. What should the analyst conclude?",
+    "expected": {
+      "key_points": [
+        "positive observed estimate",
+        "uncertainty",
+        "insufficient evidence of positive effect at the corresponding two-sided 5% level"
+      ]
+    }
+  },
+  {
+    "question": "A company can spend $10000 on a campaign. What information is needed to allocate the budget using incremental profit rather than conversion rate alone?",
+    "expected": {
+      "key_points": [
+        "incremental response",
+        "cost",
+        "revenue or margin",
+        "capacity constraints"
+      ]
+    }
+  },
+  {
+    "question": "An experiment has treatment conversion of 8% and control conversion of 6%. Calculate relative lift and explain the difference between relative lift and percentage-point lift.",
+    "expected": {
+      "absolute_lift_pp": 2.0,
+      "relative_lift_pct": 33.3333
+    }
+  }
+]

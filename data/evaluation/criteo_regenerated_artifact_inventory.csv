@@ -1,0 +1,4 @@
+artifact,rows,status,path
+criteo_test_uplift_predictions.csv,12494,regenerated,/Users/naitikdonda/Desktop/CasualMark v3/notebooks/artifacts/metrics/criteo_test_uplift_predictions.csv
+criteo_regenerated_policy_curve.csv,10,regenerated,/Users/naitikdonda/Desktop/CasualMark v3/notebooks/artifacts/metrics/criteo_regenerated_policy_curve.csv
+criteo_regenerated_deciles.csv,10,regenerated,/Users/naitikdonda/Desktop/CasualMark v3/notebooks/artifacts/metrics/criteo_regenerated_deciles.csv

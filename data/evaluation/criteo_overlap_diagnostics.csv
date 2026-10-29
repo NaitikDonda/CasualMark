@@ -1,0 +1,2 @@
+training_treatment_probability,test_treatment_probability,treated_test_rows,control_test_rows,ipw_ate
+0.8486085541236426,0.8486473507283496,10603,1891,-0.0014570634218537195

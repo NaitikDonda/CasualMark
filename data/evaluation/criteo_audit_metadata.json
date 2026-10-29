@@ -1,0 +1,22 @@
+{
+  "project": "CausalMark",
+  "dataset": "/Users/naitikdonda/Desktop/CasualMark v3/data/marketing_instructions/criteo_sample_50000.csv",
+  "original_rows": 50000,
+  "cleaned_rows": 49973,
+  "exact_duplicates_removed": 27,
+  "training_rows": 37479,
+  "test_rows": 12494,
+  "feature_count": 14,
+  "model": "T-learner with ExtraTreesRegressor",
+  "estimators_per_arm": 300,
+  "min_samples_leaf": 20,
+  "random_state": 42,
+  "bootstrap_replicates": 500,
+  "factual_mae": 0.0049316408439438585,
+  "factual_rmse": 0.05116192997846726,
+  "ipw_ate": -0.0014570634218537195,
+  "auuc": -0.005507033404477914,
+  "auuc_minus_random_reference": -0.004049969982624195,
+  "causal_assumptions": "Causal interpretation requires valid randomized assignment or appropriate propensity adjustment, positivity, consistency, and no interference.",
+  "interpretation_warning": "Bootstrap intervals are approximate and conditional on fitted models. AUUC-minus-random is descriptive and is not a significance test."
+}

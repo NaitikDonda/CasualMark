@@ -1,0 +1,7 @@
+{
+  "examples": 20,
+  "base_exact_matches": 0,
+  "finetuned_exact_matches": 20,
+  "base_exact_match_rate": 0.0,
+  "finetuned_exact_match_rate": 1.0
+}

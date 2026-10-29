@@ -1,0 +1,8 @@
+{
+  "model": "Qwen3-8B-4bit + CausalMark LoRA",
+  "evaluated": 100,
+  "successful_generations": 100,
+  "generation_errors": 0,
+  "exact_matches": 100,
+  "exact_match_rate": 1.0
+}

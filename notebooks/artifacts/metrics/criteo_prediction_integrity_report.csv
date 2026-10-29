@@ -1,0 +1,8 @@
+Metric,Value
+Export rows,12494
+Unique observation IDs,12494
+Duplicate observation IDs,0
+Unique uplift scores,699
+Zero uplift scores,11478
+Positive uplift scores,510
+Negative uplift scores,506

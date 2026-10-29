@@ -1,0 +1,5 @@
+check,status,reason
+Prediction CSV includes original row identifier,FAIL,No obvious row ID column in the saved CSV
+Prediction export explicitly duplicates rows,NOT ESTABLISHED,The shown export code only builds a DataFrame and sorts it
+Original test indices preserved in export,NOT ESTABLISHED,The export does not include the DataFrame index
+Root cause of duplicate predictions,PENDING,Need to inspect the split and model prediction outputs

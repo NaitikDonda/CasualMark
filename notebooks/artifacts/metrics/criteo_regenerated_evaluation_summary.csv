@@ -1,0 +1,10 @@
+metric,value
+prediction_rows,12494.0
+unique_row_ids,12494.0
+duplicate_row_ids,0.0
+unique_uplift_scores,699.0
+mean_predicted_uplift,0.0010571207374719981
+median_predicted_uplift,0.0
+zero_uplift_rows,11478.0
+negative_uplift_rows,506.0
+positive_uplift_rows,510.0

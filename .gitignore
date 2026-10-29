@@ -30,3 +30,7 @@ data/marketing_instructions/*.jsonl
 data/marketing_instructions/raw/criteo-research-uplift-v2.1.csv.gz
 data/user_uploads/*.csv
 data/marketing_instructions/*.jsonl
+
+# Extra large model files
+notebooks/models/causal/*.joblib
+*.joblib.bak

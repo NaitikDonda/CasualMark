@@ -1,0 +1,12 @@
+metric,value
+Test rows,12494.0
+Treatment probability,0.8486473507283496
+Doubly robust ATE,-0.001315282583738273
+ATE 95% CI lower,-0.004227314359267019
+ATE 95% CI upper,0.001543964750621743
+Positive uplift prediction share,0.02985433007843765
+Zero uplift prediction share,0.9294061149351689
+Negative uplift prediction share,0.04073955498639347
+Unique observation IDs,12494.0
+Duplicate observation IDs,0.0
+Distinct policy incremental estimates,2.0

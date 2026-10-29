@@ -1,0 +1,14 @@
+{
+    "source": "Hillstrom Email Marketing Experiment",
+    "source_records": 64000,
+    "generated_customer_examples": 64000,
+    "train_examples": 44800,
+    "validation_examples": 9600,
+    "test_examples": 9600,
+    "source_groups": [
+        "Womens E-Mail",
+        "No E-Mail",
+        "Mens E-Mail"
+    ],
+    "warning": "Customer-level examples are not independent experiments. Do not treat them as independent evidence of causal uplift."
+}

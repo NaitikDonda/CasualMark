@@ -1,0 +1,8 @@
+check,passed
+Prediction IDs unique,True
+Uplift values finite,True
+"Potential outcomes in [0, 1]",True
+Exported uplift matches potential outcomes,True
+Direct policy calculation agrees with cumulative calculation,True
+Twenty targeting fractions generated,True
+Random ranking baseline generated,True

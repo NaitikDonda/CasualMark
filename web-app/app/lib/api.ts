@@ -1,4 +1,4 @@
-const rawUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8005";
+const rawUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8002";
 export const API_BASE_URL = rawUrl.startsWith("http://") || rawUrl.startsWith("https://")
   ? rawUrl.replace(/\/+$/, "")
   : `https://${rawUrl.replace(/\/+$/, "")}`;

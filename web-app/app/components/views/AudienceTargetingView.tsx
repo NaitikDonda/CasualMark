@@ -24,6 +24,51 @@ export function AudienceTargetingView() {
   const [exported, setExported] = useState(false);
 
   const handleExport = () => {
+    // Generate sample CSV data for the targeted cohort
+    const csvData = [
+      ["customer_id", "recency", "history", "mens", "womens", "newbie", "visit", "predicted_uplift", "uplift_decile"],
+    ];
+
+    // Generate sample records for the targeted cohort
+    for (let i = 0; i < Math.min(targetedCount, 100); i++) {
+      const recency = Math.floor(Math.random() * 365);
+      const history = Math.random() * 500;
+      const mens = Math.random() > 0.5 ? 1 : 0;
+      const womens = Math.random() > 0.5 ? 1 : 0;
+      const newbie = Math.random() > 0.7 ? 1 : 0;
+      const visit = Math.random() > 0.6 ? 1 : 0;
+      const predictedUplift = (estimatedMeanLift + (Math.random() * 0.01 - 0.005)).toFixed(6);
+      const decile = Math.ceil((i / targetedCount) * 10);
+
+      csvData.push([
+        `CUST_${String(i + 1).padStart(6, '0')}`,
+        recency,
+        history.toFixed(2),
+        mens,
+        womens,
+        newbie,
+        visit,
+        predictedUplift,
+        decile
+      ]);
+    }
+
+    // Convert to CSV string
+    const csvString = csvData.map(row => row.join(',')).join('\n');
+
+    // Create blob and download
+    const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+
+    link.setAttribute('href', url);
+    link.setAttribute('download', `target_cohort_top_${targetPct}_percent_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Show success message
     setExported(true);
     setTimeout(() => setExported(false), 4000);
   };

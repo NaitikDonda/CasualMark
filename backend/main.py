@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import re
 from datetime import datetime
@@ -7,6 +8,13 @@ from typing import Dict, Any, List, Optional
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+
+# Ensure src and project root are always discoverable
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT / "src") not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT / "src"))
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from causalmark.analysis_engine import analyze_experiment
 from backend.notebook_service import NotebookService, assert_safe_path, assert_not_notebook, PROJECT_ROOT
@@ -369,4 +377,124 @@ def analyze_user_dataset(req: UserAnalysisRequest):
         control_val=req.control_val,
         alpha=req.alpha
     )
+
+# ----------------- Production ML Uplift Inference Endpoints -----------------
+from backend.ml_uplift_service import (
+    MlUpliftService,
+    UpliftPredictBatchRequest,
+    UpliftPredictionResponse,
+    CustomerFeatureRecord
+)
+
+@app.get("/api/ml/uplift/metadata")
+def get_ml_uplift_metadata():
+    """Retrieve metadata, parameters, and training provenance for the production ML uplift model."""
+    meta = MlUpliftService.get_metadata()
+    comp = MlUpliftService.get_comparison_report()
+    return {
+        "metadata": meta,
+        "comparison_report": comp
+    }
+
+@app.get("/api/ml/uplift/sample-payload")
+def get_ml_uplift_sample_payload():
+    """Returns genuine verified sample customer feature vectors from criteo_sample_50000.csv."""
+    samples = MlUpliftService.get_sample_customer_payload()
+    return {
+        "count": len(samples),
+        "customers": samples
+    }
+
+@app.post("/api/ml/uplift/predict", response_model=UpliftPredictionResponse)
+def predict_ml_uplift(payload: UpliftPredictBatchRequest):
+    """
+    Genuine ML Uplift Prediction Endpoint:
+    Accepts validated customer feature records and runs the trained champion ML model (X-Learner, T-Learner, or S-Learner).
+    Returns real control conversion probability, treatment conversion probability, uplift, and targeting decisions.
+    """
+    try:
+        customer_dicts = [c.dict() for c in payload.customers]
+        return MlUpliftService.predict(
+            customer_records=customer_dicts,
+            model_name=payload.model_name or "X-Learner"
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Inference failure: {str(e)}")
+
+class HybridQueryInput(BaseModel):
+    query: str
+    customers: Optional[List[CustomerFeatureRecord]] = None
+    model_name: Optional[str] = "X-Learner"
+
+@app.post("/api/ai/hybrid-query")
+def hybrid_ai_query(payload: HybridQueryInput):
+    """
+    Orchestrated Hybrid Workflow:
+    1. Evaluates user marketing query.
+    2. Determines if ML uplift prediction is needed.
+    3. If ML prediction is needed, invokes the genuine ML uplift model on customer features.
+    4. Passes real numerical predictions to Qwen 8B for explanation.
+    5. Returns both numerical ML results and natural-language explanation separately.
+    6. For general questions, routes directly to evidence-grounded Qwen.
+    """
+    query_lower = payload.query.lower()
+    uplift_keywords = [
+        "predict", "uplift", "score", "targeting", "treatment effect",
+        "persuadable", "sleeping dog", "conversion probability", "cate", "ite"
+    ]
+    needs_ml = any(k in query_lower for k in uplift_keywords)
+
+    if needs_ml:
+        # Obtain customers either from payload or from genuine sample payload
+        if payload.customers and len(payload.customers) > 0:
+            cust_dicts = [c.dict() for c in payload.customers]
+        else:
+            cust_dicts = MlUpliftService.get_sample_customer_payload()
+
+        if not cust_dicts:
+            raise HTTPException(
+                status_code=400,
+                detail="Customer features required for ML uplift prediction but no customer data was provided."
+            )
+
+        # Step 4: ML model performs numerical prediction
+        ml_result = MlUpliftService.predict(
+            customer_records=cust_dicts,
+            model_name=payload.model_name or "X-Learner"
+        )
+        ml_dict = ml_result.dict()
+
+        # Step 5: Backend passes real model output to Qwen for explanation
+        explanation_res = LocalAiService.explain_ml_prediction(
+            prediction_result=ml_dict,
+            user_intent=payload.query
+        )
+
+        # Step 6: Return numerical results separately from natural-language explanation
+        return {
+            "query": payload.query,
+            "requires_ml": True,
+            "ml_prediction": ml_dict,
+            "ai_explanation": explanation_res["explanation"],
+            "model_used": explanation_res["model_used"],
+            "model_name": ml_dict["model_name"]
+        }
+    else:
+        # Step 2 -> General question: preserve standard Qwen workflow
+        chat_res = LocalAiService.generate_chat_response(payload.query)
+        return {
+            "query": payload.query,
+            "requires_ml": False,
+            "ml_prediction": None,
+            "ai_explanation": chat_res["answer"],
+            "citations": chat_res["citations"],
+            "model_used": chat_res["model"],
+            "grounded": chat_res.get("grounded", True)
+        }
+
+
 

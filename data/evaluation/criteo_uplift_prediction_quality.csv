@@ -1,14 +1,2 @@
-metric,value
-prediction_column,predicted_uplift
-total_predictions,35000
-valid_predictions,35000
-missing_predictions,0
-mean_uplift,0.0003648971994799864
-median_uplift,0.0
-standard_deviation,0.009831328479485762
-minimum_uplift,-0.14911672842000737
-maximum_uplift,0.22233283687706998
-unique_prediction_values,7466
-zero_prediction_fraction,0.672
-positive_prediction_fraction,0.1750857142857143
-negative_prediction_fraction,0.15291428571428572
+prediction_rows,unique_observation_ids,duplicate_observation_ids,unique_uplift_scores,zero_uplift_rows,positive_uplift_rows,negative_uplift_rows,mean_predicted_uplift,median_predicted_uplift
+12494,12494,0,699,11478,510,506,0.0010571207374719981,0.0

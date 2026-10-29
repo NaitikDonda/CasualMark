@@ -1,0 +1,9 @@
+check,passed
+Prediction rows non-empty,True
+Unique row IDs,True
+Finite uplift scores,True
+Both treatment groups present,True
+Policy curve has 20 targeting fractions,True
+Policy values finite,True
+Bootstrap output generated,True
+Policy values are not all identical,True

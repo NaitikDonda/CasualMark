@@ -16,6 +16,34 @@ MLX_PYTHON = Path.home() / "qwen3-env" / "bin" / "python"
 MLX_BASE_MODEL = "mlx-community/Qwen3-8B-4bit"
 MLX_ADAPTER_DIR = PROJECT_ROOT / "models" / "finetuned" / "causalmark-qwen3-v2"
 
+def clean_model_output(text: str) -> str:
+    """
+    Cleans raw LLM/MLX output:
+    1. Removes MLX generation stats (Prompt/Generation/Peak memory headers & footers)
+    2. Strips think tags and markdown divider lines (===)
+    3. Eliminates repetitive looping sentences
+    """
+    if not text:
+        return ""
+    # Strip closed and unclosed think tags
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.S)
+    text = re.sub(r"<think>.*", "", text, flags=re.S)
+    # Strip MLX/CLI banners and divider lines
+    text = re.sub(r"^=+\s*$", "", text, flags=re.M)
+    text = re.sub(r"={3,}", "", text)
+    # Strip token stats lines
+    text = re.sub(r"^(Prompt|Generation|Peak memory):.*$", "", text, flags=re.M)
+    text = text.replace("<|im_end|>", "").replace("<|endoftext|>", "").replace("<|im_start|>", "")
+
+    # Clean repeated sentences / loops
+    pattern_phrase = r"(\b.+?\b)(?:\s+\1){2,}"
+    text = re.sub(pattern_phrase, r"\1", text, flags=re.IGNORECASE)
+    pattern_sentence = r"([^.!?\n]+[.!?])(?:\s*\1)+"
+    text = re.sub(pattern_sentence, r"\1", text, flags=re.IGNORECASE)
+
+    return re.sub(r"\n{3,}", "\n\n", text).strip()
+
+
 class LocalAiService:
     @staticmethod
     def get_installed_models() -> List[Dict[str, Any]]:
@@ -98,6 +126,32 @@ class LocalAiService:
                         "excerpt": inv_excerpt,
                         "score": 3 + match
                     })
+            except Exception:
+                pass
+
+        # 1b. ML Uplift Model Comparison and Metadata
+        ml_comp_file = PROJECT_ROOT / "data" / "evaluation" / "criteo_uplift_model_comparison_report.json"
+        if ml_comp_file.exists():
+            try:
+                with open(ml_comp_file, "r", encoding="utf-8") as f:
+                    comp_data = json.load(f)
+                champ = comp_data.get("champion_selection", {})
+                excerpt = (
+                    f"Production ML Uplift Models: T-Learner, S-Learner, and X-Learner evaluated on Criteo dataset.\n"
+                    f"Selected Provisional Champion: {champ.get('provisional_champion', 'X-Learner')} ({champ.get('status')}).\n"
+                    f"Rationale: {champ.get('rationale')}\n"
+                    f"Caveats: {champ.get('caveats')}"
+                )
+                match = sum(1 for term in query_terms if term in ["champion", "xlearner", "x-learner", "tlearner", "t-learner", "slearner", "s-learner", "uplift", "production", "ml", "compare", "comparison"])
+                if match > 0:
+                    citations.append({
+                        "source": "data/evaluation/criteo_uplift_model_comparison_report.json",
+                        "label": "Uplift Model Comparison & Champion Selection",
+                        "excerpt": excerpt,
+                        "score": 4 + match
+                    })
+            except Exception:
+                pass
             except Exception:
                 pass
 
@@ -187,6 +241,103 @@ class LocalAiService:
         return citations[:5]
 
     @staticmethod
+    def explain_ml_prediction(
+        prediction_result: Dict[str, Any],
+        user_intent: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Connects trained ML uplift output with Qwen 8B explanation workflow:
+        Translates raw numerical estimates into an authoritative business and causal explanation.
+        """
+        predictions = prediction_result.get("predictions", [])
+        summary = prediction_result.get("summary", {})
+        model_name = prediction_result.get("model_name", "X-Learner")
+        algorithm = prediction_result.get("algorithm", "ExtraTreesRegressor")
+        caveats = prediction_result.get("evaluation_caveats", "")
+        
+        # Build synthesis of results
+        n_cust = len(predictions)
+        high_priority = [p for p in predictions if p.get("targeting_tier") == "High Priority Persuadable"]
+        sleeping_dogs = [p for p in predictions if "Sleeping Dog" in p.get("targeting_tier", "")]
+        neutral = [p for p in predictions if "Neutral" in p.get("targeting_tier", "")]
+
+        # Top sample details for explanation
+        sample_highlights = []
+        for p in predictions[:4]:
+            sample_highlights.append(
+                f"- **{p['customer_id']}**: Control P(Y=1) = {p['control_conversion_prob']*100:.3f}%, "
+                f"Treatment P(Y=1) = {p['treatment_conversion_prob']*100:.3f}% -> "
+                f"Uplift: {p['predicted_uplift_percentage_points']:+.3f}% pts ({p['targeting_tier']})"
+            )
+
+        explanation_prompt = (
+            f"<|im_start|>system\n"
+            f"You are CausalMark AI, an expert marketing data scientist and causal inference specialist. "
+            f"Explain the following real ML uplift model output to a marketing executive. "
+            f"RULES:\n"
+            f"1. Refer explicitly to the trained ML model '{model_name}' ({algorithm}).\n"
+            f"2. Cite the exact numerical probabilities and uplift percentages from the model results.\n"
+            f"3. Explain why targeting persudable customers yields incremental conversions while avoiding sleeping dogs prevents negative lift.\n"
+            f"4. Never claim that predicted uplift is guaranteed; cite the necessary causal assumptions and sample size limitations.<|im_end|>\n"
+            f"<|im_start|>user\n"
+            f"REAL ML MODEL RESULTS:\n"
+            f"Model: {model_name} ({algorithm})\n"
+            f"Evaluated Customers: {n_cust}\n"
+            f"Mean Predicted Uplift: {summary.get('mean_predicted_uplift_pct', 0.0):+.4f} percentage points\n"
+            f"High Priority Targets: {len(high_priority)} | Sleeping Dogs: {len(sleeping_dogs)} | Neutral: {len(neutral)}\n\n"
+            f"Sample Customer Estimates:\n" + "\n".join(sample_highlights) + "\n\n"
+            f"Caveats & Assumptions: {caveats}\n\n"
+            f"TASK: Provide a concise executive explanation and actionable targeting strategy.<|im_end|>\n"
+            f"<|im_start|>assistant\n"
+        )
+
+        explanation = ""
+        model_used = "Fine-Tuned Qwen 8B LoRA"
+
+        if MLX_PYTHON.exists() and MLX_ADAPTER_DIR.exists():
+            try:
+                import subprocess
+                command = [
+                    str(MLX_PYTHON), "-m", "mlx_lm", "generate",
+                    "--model", MLX_BASE_MODEL,
+                    "--adapter-path", str(MLX_ADAPTER_DIR),
+                    "--prompt", explanation_prompt,
+                    "--max-tokens", "400",
+                    "--temp", "0.0"
+                ]
+                proc = subprocess.run(command, capture_output=True, text=True, timeout=25)
+                if proc.returncode == 0 and proc.stdout:
+                    text = clean_model_output(proc.stdout)
+                    if len(text) >= 20 and any(c.isalnum() for c in text):
+                        explanation = text
+            except Exception:
+                pass
+
+        if not explanation:
+            # Deterministic, fact-grounded template
+            explanation = (
+                f"### Executive Uplift Explanation ({model_name})\n\n"
+                f"The **{model_name}** ({algorithm}) analyzed **{n_cust} customer profiles** "
+                f"with an average predicted uplift of **{summary.get('mean_predicted_uplift_pct', 0.0):+.4f} percentage points**.\n\n"
+                f"**Key Findings & Targeting Strategy**:\n"
+                f"1. **High-Priority Persuadables ({len(high_priority)} customers)**: Customers in this group exhibit meaningful positive incremental lift "
+                f"(e.g., up to +{max([p['predicted_uplift_percentage_points'] for p in predictions] or [0]):.3f}% pts). Allocating marketing budget here drives genuine incremental conversions.\n"
+                f"2. **Sleeping Dogs ({len(sleeping_dogs)} customers)**: Negative treatment effects were detected. Treating these customers is estimated to decrease conversion rates; they should be excluded from campaigns.\n"
+                f"3. **Neutral / Unaffected ({len(neutral)} customers)**: Show negligible treatment response (near 0% lift). Marketing to them expends budget without return.\n\n"
+                f"**Causal Assumptions & Governance**:\n"
+                f"Estimates assume **Conditional Unconfoundedness** (no unobserved confounders across features f0–f11) and **Positivity**. "
+                f"Due to the low base event frequency (~0.28%), these predictions reflect statistical treatment effects rather than absolute causal certainty. "
+                f"We recommend validating this targeting policy with a randomized holdout group."
+            )
+            model_used = "CausalMark Hybrid Synthesis Engine"
+
+        return {
+            "model_used": model_used,
+            "explanation": explanation,
+            "summary": summary
+        }
+
+    @staticmethod
     def generate_chat_response(query: str, chat_history: List[Dict[str, str]] = None) -> Dict[str, Any]:
         """Generate answer grounded in project artifacts, using local Qwen 8B LoRA if available, otherwise deterministic synthesis"""
         citations = LocalAiService.retrieve_project_knowledge(query)
@@ -197,7 +348,19 @@ class LocalAiService:
             or MLX_ADAPTER_DIR.exists()
         )
         
-        # Build prompt grounding
+        # General conversational fallbacks
+        query_lower = query.lower().strip()
+        if any(term in query_lower for term in ["date", "today", "current time", "what day is"]):
+            from datetime import datetime
+            now_str = datetime.now().strftime("%A, %B %d, %Y (%I:%M %p)")
+            return {
+                "query": query,
+                "answer": f"Today is **{now_str}**.\n\nHow can I assist you with your CausalMark experiments, uplift predictions, or model comparisons today?",
+                "citations": [],
+                "model": "CausalMark System Clock",
+                "grounded": True
+            }
+
         context_str = ""
         for c in citations:
             context_str += f"- [{c['label']} ({c['source']})]:\n{c['excerpt']}\n\n"
@@ -222,16 +385,6 @@ class LocalAiService:
         answer = ""
         model_used = "Fine-Tuned Qwen 8B LoRA (Evidence Grounded)" if lora_adapter_exists else "Deterministic Evidence Synthesis"
 
-        def clean_output_robust(text: str) -> str:
-            # Strip closed think tags
-            text = re.sub(r"<think>.*?</think>", "", text, flags=re.S)
-            # Strip open unclosed think tags
-            text = re.sub(r"<think>.*", "", text, flags=re.S)
-            text = re.sub(r"^=+\s*$", "", text, flags=re.M)
-            text = re.sub(r"^(Prompt|Generation|Peak memory):.*$", "", text, flags=re.M)
-            text = text.replace("<|im_end|>", "").replace("<|endoftext|>", "")
-            return re.sub(r"\n{3,}", "\n\n", text).strip()
-
         # 1. First priority: Run fine-tuned Qwen 8B LoRA via Apple MLX
         if MLX_PYTHON.exists() and MLX_ADAPTER_DIR.exists():
             try:
@@ -246,7 +399,7 @@ class LocalAiService:
                 ]
                 proc = subprocess.run(command, capture_output=True, text=True, timeout=25)
                 if proc.returncode == 0 and proc.stdout:
-                    cleaned = clean_output_robust(proc.stdout)
+                    cleaned = clean_model_output(proc.stdout)
                     # Require substantive content (> 20 chars and not just punctuation)
                     if len(cleaned) >= 20 and any(c.isalnum() for c in cleaned):
                         answer = cleaned
@@ -348,6 +501,30 @@ class LocalAiService:
                     "**Dataset Row Counts in CausalMark**:\n\n" +
                     "\n".join(rows_desc) + "\n\n"
                     "All numbers reflect verified local dataset files and active uploaded experiment data."
+                )
+            elif "champion" in query_lower or "x-learner" in query_lower or "xlearner" in query_lower or "t-learner" in query_lower or "s-learner" in query_lower or "compare models" in query_lower or "best model" in query_lower:
+                from backend.ml_uplift_service import MlUpliftService
+                meta = MlUpliftService.get_metadata()
+                comp = MlUpliftService.get_comparison_report()
+                champ = comp.get("champion_selection", {})
+                models = comp.get("models", [])
+                
+                rows = []
+                for m in models:
+                    rows.append(
+                        f"• **{m['model_name']}**: RMSE = {m['factual_rmse']:.5f}, Qini Score = {m['qini_score']:.2f}, "
+                        f"Unique Scores = {m['unique_uplift_scores']}, 20% Policy Value DR = {m['policy_value_20pct']:.6f} "
+                        f"(95% CI vs None: [{m['ci_95_lower_vs_none']:.5f}, {m['ci_95_upper_vs_none']:.5f}])"
+                    )
+                models_text = "\n".join(rows) if rows else "T-Learner, S-Learner, and X-Learner evaluated."
+                
+                answer = (
+                    f"**ML Uplift Model Comparison & Champion Selection**:\n\n"
+                    f"{models_text}\n\n"
+                    f"• **Selected Champion**: **{champ.get('provisional_champion', 'X-Learner')}** ({champ.get('status', 'Provisional Champion')}).\n"
+                    f"• **Selection Rationale**: {champ.get('rationale', 'X-Learner offers continuous score discrimination (2,374 unique uplift scores) and avoids heavy point masses at zero.')}\n"
+                    f"• **Statistical Uncertainty**: Due to low base conversion rate (0.28% in Criteo sample), all 95% bootstrap confidence intervals for incremental policy value include zero. Therefore, no candidate can claim a definitive causal victory, and the champion is designated as provisional.\n"
+                    f"• **Causal Assumptions**: Unconfoundedness (no unobserved confounders), Positivity (all units have non-zero treatment probability), and SUTVA."
                 )
             elif "criteo" in query_lower or "evaluation" in query_lower or "metric" in query_lower:
                 answer = (

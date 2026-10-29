@@ -1,0 +1,10 @@
+Metric,Value
+Rows,12494.0
+Unique uplift scores,699.0
+Zero uplift predictions,11478.0
+Negative uplift predictions,506.0
+Positive uplift predictions,510.0
+Mean predicted uplift,0.0010571207374719981
+Median predicted uplift,0.0
+Minimum predicted uplift,-0.07821100218167501
+Maximum predicted uplift,0.2827078615432638
