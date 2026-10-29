@@ -479,7 +479,7 @@ class LocalAiService:
                 )
             elif "who are you" in query_lower or "your name" in query_lower or "what is your name" in query_lower:
                 answer = (
-                    "I am **CausalMark AI**, an intelligent marketing analytics assistant. I run on your fine-tuned **Qwen 8B LoRA (causalmark-qwen3-v2)** model, "
+                    "I am CausalMark AI, an intelligent marketing analytics assistant. I run on your fine-tuned **Qwen 8B LoRA (causalmark-qwen3-v2)** model, "
                     "with direct grounding in your CausalMark v3 notebooks, model checkpoints, and evaluation artifacts."
                 )
             elif any(term in query_lower for term in ["how many rows", "row count", "dataset size", "how many records", "rows in dataset"]):

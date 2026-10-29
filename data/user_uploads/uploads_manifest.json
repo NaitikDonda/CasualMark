@@ -1,0 +1,308 @@
+[
+  {
+    "upload_id": "46b4ef99",
+    "filename": "marketing_AB.csv",
+    "saved_filename": "46b4ef99_marketing_AB.csv",
+    "size_bytes": 21980992,
+    "uploaded_at": "2026-10-27T18:05:44.017444",
+    "total_rows": 588101,
+    "total_columns": 7,
+    "columns": [
+      "Unnamed: 0",
+      "user id",
+      "test group",
+      "converted",
+      "total ads",
+      "most ads day",
+      "most ads hour"
+    ],
+    "dtypes": {
+      "Unnamed: 0": "int64",
+      "user id": "int64",
+      "test group": "str",
+      "converted": "bool",
+      "total ads": "int64",
+      "most ads day": "str",
+      "most ads hour": "int64"
+    },
+    "missing_counts": {
+      "Unnamed: 0": 0,
+      "user id": 0,
+      "test group": 0,
+      "converted": 0,
+      "total ads": 0,
+      "most ads day": 0,
+      "most ads hour": 0
+    },
+    "duplicates_count": 0,
+    "candidate_treatments": [
+      "test group"
+    ],
+    "candidate_outcomes": [
+      "converted"
+    ],
+    "numeric_columns": [
+      "Unnamed: 0",
+      "user id",
+      "converted",
+      "total ads",
+      "most ads hour"
+    ],
+    "stats": {
+      "Unnamed: 0": {
+        "min": 0.0,
+        "max": 588100.0,
+        "mean": 294050.0,
+        "std": 169770.27966785
+      },
+      "user id": {
+        "min": 900000.0,
+        "max": 1654483.0,
+        "mean": 1310692.2157928655,
+        "std": 202225.98312775328
+      },
+      "converted": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.02523886203220195,
+        "std": 0.15684994009660366
+      },
+      "total ads": {
+        "min": 1.0,
+        "max": 2065.0,
+        "mean": 24.82087600599217,
+        "std": 43.71518050438967
+      },
+      "most ads hour": {
+        "min": 0.0,
+        "max": 23.0,
+        "mean": 14.469060586531905,
+        "std": 4.8346339306962935
+      }
+    },
+    "analyzed": true,
+    "latest_analysis": {
+      "upload_id": "46b4ef99",
+      "filename": "marketing_AB.csv",
+      "dataset_name": "marketing_AB.csv",
+      "analyzed_at": "2026-10-27T18:15:02.344048",
+      "total_evaluated_users": 588101,
+      "treatment_column": "test group",
+      "outcome_column": "converted",
+      "treatment_label": "ad",
+      "control_label": "psa",
+      "is_binary": true,
+      "analysis": {
+        "metric_type": "Binary Proportion Conversion Rate",
+        "treatment_conversions": 14423,
+        "treatment_users": 564577,
+        "treatment_rate_pct": 2.5547,
+        "control_conversions": 420,
+        "control_users": 23524,
+        "control_rate_pct": 1.7854,
+        "absolute_lift_pp": 0.7692,
+        "relative_lift_pct": 43.09,
+        "z_score": 7.3701,
+        "p_value": 0.0,
+        "alpha": 0.05,
+        "statistically_significant": true,
+        "confidence_interval": {
+          "level": 0.95,
+          "ci_lower_pp": 0.5951,
+          "ci_upper_pp": 0.9434,
+          "interval_includes_zero": false
+        },
+        "summary": "Treatment (ad) conversion rate was 2.5547% (14,423/564,577), compared with 1.7854% (420/23,524) for control (psa). The absolute lift was +0.7692 percentage points (relative lift: +43.09%). The result is statistically significant (Z=7.37, p=1.7053e-13) with 95% CI [+0.5951 pp, +0.9434 pp]."
+      },
+      "criteo_model_compatible": false,
+      "model_compatibility_note": "Custom schema detected. Pre-trained Criteo model requires dense features f0-f11; group-level A/B causal analysis computed instead.",
+      "causal_assumptions_reminder": "Statistical significance does not prove causal unconfoundedness without verified experiment randomization. Any observational selection bias or unobserved confounding may distort incremental treatment impact."
+    }
+  },
+  {
+    "upload_id": "b4259f50",
+    "filename": "marketing_AB.csv",
+    "saved_filename": "b4259f50_marketing_AB.csv",
+    "size_bytes": 21980992,
+    "uploaded_at": "2026-10-27T18:08:25.395423",
+    "total_rows": 588101,
+    "total_columns": 7,
+    "columns": [
+      "Unnamed: 0",
+      "user id",
+      "test group",
+      "converted",
+      "total ads",
+      "most ads day",
+      "most ads hour"
+    ],
+    "dtypes": {
+      "Unnamed: 0": "int64",
+      "user id": "int64",
+      "test group": "str",
+      "converted": "bool",
+      "total ads": "int64",
+      "most ads day": "str",
+      "most ads hour": "int64"
+    },
+    "missing_counts": {
+      "Unnamed: 0": 0,
+      "user id": 0,
+      "test group": 0,
+      "converted": 0,
+      "total ads": 0,
+      "most ads day": 0,
+      "most ads hour": 0
+    },
+    "duplicates_count": 0,
+    "candidate_treatments": [
+      "test group"
+    ],
+    "candidate_outcomes": [
+      "converted"
+    ],
+    "numeric_columns": [
+      "Unnamed: 0",
+      "user id",
+      "converted",
+      "total ads",
+      "most ads hour"
+    ],
+    "stats": {
+      "Unnamed: 0": {
+        "min": 0.0,
+        "max": 588100.0,
+        "mean": 294050.0,
+        "std": 169770.27966785
+      },
+      "user id": {
+        "min": 900000.0,
+        "max": 1654483.0,
+        "mean": 1310692.2157928655,
+        "std": 202225.98312775328
+      },
+      "converted": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.02523886203220195,
+        "std": 0.15684994009660366
+      },
+      "total ads": {
+        "min": 1.0,
+        "max": 2065.0,
+        "mean": 24.82087600599217,
+        "std": 43.71518050438967
+      },
+      "most ads hour": {
+        "min": 0.0,
+        "max": 23.0,
+        "mean": 14.469060586531905,
+        "std": 4.8346339306962935
+      }
+    }
+  },
+  {
+    "upload_id": "a9a3a988",
+    "filename": "test_cohort.csv",
+    "saved_filename": "a9a3a988_test_cohort.csv",
+    "size_bytes": 68,
+    "uploaded_at": "2026-10-27T18:21:18.622137",
+    "total_rows": 4,
+    "total_columns": 4,
+    "columns": [
+      "user_id",
+      "treatment",
+      "converted",
+      "age"
+    ],
+    "dtypes": {
+      "user_id": "int64",
+      "treatment": "int64",
+      "converted": "int64",
+      "age": "int64"
+    },
+    "missing_counts": {
+      "user_id": 0,
+      "treatment": 0,
+      "converted": 0,
+      "age": 0
+    },
+    "duplicates_count": 0,
+    "candidate_treatments": [
+      "treatment"
+    ],
+    "candidate_outcomes": [
+      "converted"
+    ],
+    "numeric_columns": [
+      "user_id",
+      "treatment",
+      "converted",
+      "age"
+    ],
+    "stats": {
+      "user_id": {
+        "min": 1.0,
+        "max": 4.0,
+        "mean": 2.5,
+        "std": 1.2909944487358056
+      },
+      "treatment": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5,
+        "std": 0.5773502691896257
+      },
+      "converted": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5,
+        "std": 0.5773502691896257
+      },
+      "age": {
+        "min": 25.0,
+        "max": 45.0,
+        "mean": 32.5,
+        "std": 8.812869377601524
+      }
+    },
+    "analyzed": true,
+    "latest_analysis": {
+      "upload_id": "a9a3a988",
+      "filename": "test_cohort.csv",
+      "dataset_name": "test_cohort.csv",
+      "analyzed_at": "2026-10-27T18:21:18.629643",
+      "total_evaluated_users": 4,
+      "treatment_column": "treatment",
+      "outcome_column": "converted",
+      "treatment_label": "1",
+      "control_label": "0",
+      "is_binary": true,
+      "analysis": {
+        "metric_type": "Binary Proportion Conversion Rate",
+        "treatment_conversions": 1,
+        "treatment_users": 2,
+        "treatment_rate_pct": 50.0,
+        "control_conversions": 1,
+        "control_users": 2,
+        "control_rate_pct": 50.0,
+        "absolute_lift_pp": 0.0,
+        "relative_lift_pct": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "alpha": 0.05,
+        "statistically_significant": false,
+        "confidence_interval": {
+          "level": 0.95,
+          "ci_lower_pp": -97.9982,
+          "ci_upper_pp": 97.9982,
+          "interval_includes_zero": true
+        },
+        "summary": "Treatment (1) conversion rate was 50.0000% (1/2), compared with 50.0000% (1/2) for control (0). The absolute lift was +0.0000 percentage points (relative lift: +0.00%). The result is not statistically significant (Z=0.00, p=1.0000e+00) with 95% CI [-97.9982 pp, +97.9982 pp]."
+      },
+      "criteo_model_compatible": false,
+      "model_compatibility_note": "Custom schema detected. Pre-trained Criteo model requires dense features f0-f11; group-level A/B causal analysis computed instead.",
+      "causal_assumptions_reminder": "Statistical significance does not prove causal unconfoundedness without verified experiment randomization. Any observational selection bias or unobserved confounding may distort incremental treatment impact."
+    }
+  }
+]

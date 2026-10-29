@@ -1,0 +1,5 @@
+check,status,detail
+Prediction file has rows,PASS,35000 rows
+Exact duplicate prediction rows,REVIEW,27189 duplicate rows
+Zero uplift concentration,REVIEW,23520/35000 rows have zero scores
+Observation-level traceability,NOT VERIFIED,No obvious row identifier in the saved prediction CSV

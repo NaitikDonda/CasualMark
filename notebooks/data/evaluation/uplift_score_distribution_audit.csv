@@ -1,0 +1,10 @@
+metric,value
+total_rows,35000
+exact_duplicate_rows,27189
+unique_complete_rows,7811
+missing_scores,0
+infinite_scores,0
+unique_scores,7466
+zero_scores,23520
+negative_scores,5352
+positive_scores,6128
